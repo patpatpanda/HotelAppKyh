@@ -66,13 +66,25 @@ namespace HotelAppKyh.Data
 
 
             var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
-            Console.Write("Förnamn : ");
-            var firstName = Console.ReadLine();
-            Console.Write("Efternamn : ");
-            var lastName = Console.ReadLine();
-            Console.Write("Telefonummer : ");
-            var nummer = Console.ReadLine();
-            editGuest.NewGuestProps(firstName, lastName, nummer);
+
+            Console.WriteLine("Vill du radera gästen tryck 1, vill du ändra uppgifter tryck 2");
+            string input = Console.ReadLine();
+            string inputToLower = input.ToLower();
+            if (inputToLower == "1")
+            {
+                myContext.Remove(editGuest);
+            }
+            else if (inputToLower == "2")
+            {
+                Console.Write("Förnamn : ");
+                var firstName = Console.ReadLine();
+                Console.Write("Efternamn : ");
+                var lastName = Console.ReadLine();
+                Console.Write("Telefonummer : ");
+                var nummer = Console.ReadLine();
+                editGuest.NewGuestProps(firstName, lastName, nummer);
+            }
+           
 
             Console.WriteLine();
             Console.WriteLine("Tryck enter för att fortsätta");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,9 @@ namespace HotelAppKyh.Data
 
         public int NumberOfBeds { get; set; }
         public int RoomPrice { get; set; }
+
+
+       
 
         public void CreateRoom(AppDbContext myContext)
         {
@@ -32,6 +36,8 @@ namespace HotelAppKyh.Data
                 room.NumberOfBeds = 1;
                 Console.Write("Ange antal kv/m för rummet : ");
                 room.RoomSize = int.Parse(Console.ReadLine());
+                Console.Write("Ange pris för rummet : ");
+                room.RoomPrice = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("Rummet har skapats!");
                 Console.WriteLine("Tryck enter för att fortsätta");
@@ -70,7 +76,7 @@ namespace HotelAppKyh.Data
         {
             Console.Clear();
             foreach (var room in myContext.Rooms)
-                Console.WriteLine($"Rumsnummer = {room.RoomId} *** " +
+                Console.WriteLine($"RumId = {room.RoomId} *** " +
                                   $"Typ av rum = {room.RoomType} *** Storlek = {room.RoomSize}kvm *** Antal sängar = " +
                                   $"{room.NumberOfBeds} *** Pris = {room.RoomPrice} kronor");
             Console.WriteLine();
@@ -90,13 +96,33 @@ namespace HotelAppKyh.Data
 
             editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
 
-            Console.Write("Ange typ av rum : ");
-            string newTypeOfRoom = Console.ReadLine();
-            Console.Write("Ange storlek :");
-            int newSizeOfRoom = int.Parse(Console.ReadLine());
-            Console.WriteLine("Pris : ");
-            int newPrice = int.Parse(Console.ReadLine());
-            editRoom.NewRoomProps(newTypeOfRoom, newSizeOfRoom,newPrice);
+            Console.WriteLine("Vill du radera hela rummet tryck 1, vill du ändra rummets uppgifter tryck 2");
+            string input = Console.ReadLine();
+            string inputToLower = input.ToLower();
+            if (input == "1") 
+            {
+                myContext.Remove(editRoom);
+            }
+            
+            else if (input == "2")
+            {
+                Console.Write("Ange typ av rum : ");
+                string newTypeOfRoom = Console.ReadLine();
+                Console.Write("Ange storlek :");
+                int newSizeOfRoom = int.Parse(Console.ReadLine());
+                Console.WriteLine("Pris : ");
+                int newPrice = int.Parse(Console.ReadLine());
+                editRoom.NewRoomProps(newTypeOfRoom, newSizeOfRoom, newPrice);
+
+            }
+
+
+           
+
+            
+
+            
+           
 
             Console.WriteLine();
             Console.WriteLine("Tryck enter for att fortsätta");
