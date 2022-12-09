@@ -53,7 +53,8 @@ namespace HotelAppKyh.Data
 
                 Console.Write("Ange antal kv/m för rummet : ");
                 room.RoomSize = int.Parse(Console.ReadLine());
-
+                Console.WriteLine("Ange pris för rummet : ");
+                room.RoomPrice = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("Rummet har skapats!");
                 Console.WriteLine("Tryck enter för att fortsätta");
@@ -110,7 +111,7 @@ namespace HotelAppKyh.Data
                 myContext.Remove(editRoom);
             }
             
-            else if (input == "2")
+             if (input == "2")
             {
                 Console.Write("Ange typ av rum : ");
                 string newTypeOfRoom = Console.ReadLine();
@@ -122,12 +123,12 @@ namespace HotelAppKyh.Data
 
             }
 
-            else if (input == "3")
+             if (input == "3")
             {
                 if (editRoom.RoomType == "dubbel" && editRoom.RoomSize >= 40 && editRoom.RoomSize <= 50 &&
                     editRoom.NumberOfBeds == 2)
                 {
-                    Console.WriteLine("En säng har lagts till");
+                    Console.WriteLine("1 säng har lagts till");
                     editRoom.NumberOfBeds = 3;
 
                 }
@@ -138,11 +139,27 @@ namespace HotelAppKyh.Data
                         Console.Write("Skriv 1 för en säng, 2 för två sängar: ");
                         string innput3 = Console.ReadLine();
                         if (innput3 == "1")
-                            editRoom.NumberOfBeds = 3;
-                        if (innput3 == "2")
-                            editRoom.NumberOfBeds = 4;
+                        {
 
+                            editRoom.NumberOfBeds = 3;
+                            Console.WriteLine("1 säng har lagts till");
                     }
+
+
+
+
+
+                        if (innput3 == "2")
+                        {
+                        editRoom.NumberOfBeds = 4;
+                        Console.WriteLine("2 sängar har lagts till");
+                    }
+                            
+
+                         
+                                           
+                    }
+                else Console.WriteLine("Det finns ingen möjlighet att lägga till säng till detta rum");
                 
             }
            
