@@ -42,7 +42,8 @@ namespace HotelAppKyh.Data
                 Console.WriteLine("Rummet har skapats!");
                 Console.WriteLine("Tryck enter för att fortsätta");
                 Console.ReadLine();
-
+                myContext.Add(room);
+                myContext.SaveChanges();
             }
 
             else if (typeToLower == "dubbel")
@@ -57,7 +58,8 @@ namespace HotelAppKyh.Data
                 Console.WriteLine("Tryck enter för att fortsätta");
                 Console.ReadLine();
 
-
+                myContext.Add(room);
+                myContext.SaveChanges();
             }
             else if (typeToLower != "enkel" || typeToLower != "dubbel")
             {
@@ -68,8 +70,7 @@ namespace HotelAppKyh.Data
             }
 
 
-            myContext.Add(room);
-            myContext.SaveChanges();
+            
         }
 
         public void ListAllRooms(AppDbContext myContext)
