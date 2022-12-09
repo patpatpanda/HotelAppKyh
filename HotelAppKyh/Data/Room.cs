@@ -4,6 +4,7 @@ using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace HotelAppKyh.Data
@@ -97,7 +98,11 @@ namespace HotelAppKyh.Data
 
             editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
 
-            Console.WriteLine("Vill du radera hela rummet tryck 1, vill du ändra rummets uppgifter tryck 2");
+            Console.WriteLine("Vill du radera hela rummet tryck 1");
+            Console.WriteLine("Vill du ändra uppgifter i rummet tryck 2");
+            Console.WriteLine("Lägga till säng tryck 3");
+
+                
             string input = Console.ReadLine();
             string inputToLower = input.ToLower();
             if (input == "1") 
@@ -117,7 +122,29 @@ namespace HotelAppKyh.Data
 
             }
 
+            else if (input == "3")
+            {
+                if (editRoom.RoomType == "dubbel" && editRoom.RoomSize >= 40 && editRoom.RoomSize <= 50 &&
+                    editRoom.NumberOfBeds == 2)
+                {
+                    Console.WriteLine("En säng har lagts till");
+                    editRoom.NumberOfBeds = 3;
 
+                }
+
+                if (editRoom.RoomType == "dubbel" && editRoom.RoomSize > 50 && editRoom.NumberOfBeds == 2)
+                    {
+                        Console.WriteLine("Det finns möjlighet att lägga till 1 eller 2 sängar");
+                        Console.Write("Skriv 1 för en säng, 2 för två sängar: ");
+                        string innput3 = Console.ReadLine();
+                        if (innput3 == "1")
+                            editRoom.NumberOfBeds = 3;
+                        if (innput3 == "2")
+                            editRoom.NumberOfBeds = 4;
+
+                    }
+                
+            }
            
 
             
