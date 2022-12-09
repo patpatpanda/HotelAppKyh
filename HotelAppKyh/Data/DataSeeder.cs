@@ -17,38 +17,38 @@ namespace HotelAppKyh.Data
             myContext.SaveChanges();
         }
 
-        private void SeedCountys(AppDbContext dbContext)
+        private void SeedCountys(AppDbContext myContext)
         {
 
 
-            if (!dbContext.Guests.Any() || !dbContext.Rooms.Any())
+            if (!myContext.Guests.Any() || !myContext.Rooms.Any())
             {
-                dbContext.Guests.Add(new Guest()
+                myContext.Guests.Add(new Guest()
                 {
                     FirstName = "Gus",
                     LastName = "Griswald",
                     PhoneNumber = "07334567"
 
                 });
-                dbContext.Guests.Add(new Guest()
+                myContext.Guests.Add(new Guest()
                 {
                     FirstName = "Spinelli",
                     LastName = "Adams",
                     PhoneNumber = "07014567"
                 });
-                dbContext.Guests.Add(new Guest()
+                myContext.Guests.Add(new Guest()
                 {
                     FirstName = "Tobbe",
                     LastName = "Dethweiler",
                     PhoneNumber = "07034537"
                 });
-                dbContext.Guests.Add(new Guest()
+                myContext.Guests.Add(new Guest()
                 {
                     FirstName = "Mike",
                     LastName = "Bloomberg",
                     PhoneNumber = "07039567"
                 });
-                dbContext.Rooms.Add(new Room()
+                myContext.Rooms.Add(new Room()
                 {
                     RoomType = "Enkel",
                     RoomSize = 30,
@@ -56,7 +56,7 @@ namespace HotelAppKyh.Data
                     RoomPrice = 1000
 
                 });
-                dbContext.Rooms.Add(new Room()
+                myContext.Rooms.Add(new Room()
                 {
                     RoomType = "Dubbel",
                     RoomSize = 40,
@@ -64,7 +64,7 @@ namespace HotelAppKyh.Data
                     RoomPrice = 1200
 
                 });
-                dbContext.Rooms.Add(new Room()
+                myContext.Rooms.Add(new Room()
                 {
                     RoomType = "Dubbel",
                     RoomSize = 50,
@@ -72,7 +72,7 @@ namespace HotelAppKyh.Data
                     RoomPrice = 1500
 
                 });
-                dbContext.Rooms.Add(new Room()
+                myContext.Rooms.Add(new Room()
                 {
                     RoomType = "Dubbel",
                     RoomSize = 70,
