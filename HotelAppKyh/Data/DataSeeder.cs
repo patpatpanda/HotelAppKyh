@@ -50,7 +50,7 @@ namespace HotelAppKyh.Data
                 });
                 myContext.Rooms.Add(new Room()
                 {
-                    RoomType = "Enkel",
+                    RoomType = "enkel",
                     RoomSize = 30,
                     NumberOfBeds = 1,
                     RoomPrice = 1000
@@ -58,7 +58,7 @@ namespace HotelAppKyh.Data
                 });
                 myContext.Rooms.Add(new Room()
                 {
-                    RoomType = "Dubbel",
+                    RoomType = "dubbel",
                     RoomSize = 40,
                     NumberOfBeds = 2,
                     RoomPrice = 1200
@@ -66,7 +66,7 @@ namespace HotelAppKyh.Data
                 });
                 myContext.Rooms.Add(new Room()
                 {
-                    RoomType = "Dubbel",
+                    RoomType = "dubbel",
                     RoomSize = 50,
                     NumberOfBeds = 2,
                     RoomPrice = 1500
@@ -74,7 +74,7 @@ namespace HotelAppKyh.Data
                 });
                 myContext.Rooms.Add(new Room()
                 {
-                    RoomType = "Dubbel",
+                    RoomType = "dubbel",
                     RoomSize = 70,
                     NumberOfBeds = 2,
                     RoomPrice = 2000

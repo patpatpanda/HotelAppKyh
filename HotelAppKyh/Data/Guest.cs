@@ -37,12 +37,14 @@ namespace HotelAppKyh.Data
             Console.Write("Ange telefonnummer : ");
             guest.PhoneNumber = Console.ReadLine();
 
-
+           
 
             myContext.Guests.Add(guest);
             myContext.SaveChanges();
 
-
+            Console.WriteLine("Gäst skapad!");
+            Console.WriteLine("Tryck enter för att fortsätta");
+            Console.ReadLine();
 
         }
 
