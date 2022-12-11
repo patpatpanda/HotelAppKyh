@@ -85,6 +85,7 @@ namespace HotelAppKyh.Data
                 Console.Write("Telefonummer : ");
                 var nummer = Console.ReadLine();
                 editGuest.NewGuestProps(firstName, lastName, nummer);
+                Console.WriteLine("Uppgifter uppdaterade!");
             }
            
 

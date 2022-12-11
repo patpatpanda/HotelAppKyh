@@ -28,8 +28,7 @@ namespace HotelAppKyh
             var guest = new Guest();
             var room = new Room();
 
-
-
+            
             while (true)
             {
                 try

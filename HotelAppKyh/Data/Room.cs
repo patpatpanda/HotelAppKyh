@@ -40,7 +40,7 @@ public class Room
 
             Console.Write("Ange antal kv/m för rummet : ");
             room.RoomSize = int.Parse(Console.ReadLine());
-            Console.WriteLine("Ange pris för rummet : ");
+            Console.Write("Ange pris för rummet : ");
             room.RoomPrice = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Rummet har skapats!");
