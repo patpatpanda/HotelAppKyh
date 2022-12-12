@@ -68,7 +68,7 @@ namespace HotelAppKyh.Data
 
 
             var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
-
+            Console.Clear();
             Console.WriteLine("Vill du radera gästen tryck 1, vill du ändra uppgifter tryck 2");
             string input = Console.ReadLine();
             string inputToLower = input.ToLower();
@@ -78,6 +78,7 @@ namespace HotelAppKyh.Data
             }
             else if (inputToLower == "2")
             {
+                Console.Clear();
                 Console.Write("Förnamn : ");
                 var firstName = Console.ReadLine();
                 Console.Write("Efternamn : ");
