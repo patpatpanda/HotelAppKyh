@@ -34,13 +34,13 @@ namespace HotelAppKyh
                 try
                 {
                     Console.Clear();
-                    Console.WriteLine("1 **************** Skapa ny gäst ******************");
-                    Console.WriteLine("2 **************** Skapa nytt rum ******************");
-                    Console.WriteLine("3 **************** Lista alla gäster ***************");
-                    Console.WriteLine("4 **************** Lista alla rum ******************");
-                    Console.WriteLine("5 **************** Editera gäst ********************");
-                    Console.WriteLine("6 **************** Editera rum *********************" );
-                    Console.WriteLine("7 **************** Avsluta *************************");
+                    Console.WriteLine("1:  Skapa ny gäst");
+                    Console.WriteLine("2:  Skapa nytt rum");
+                    Console.WriteLine("3:  Lista alla gäster");
+                    Console.WriteLine("4:  Lista alla rum");
+                    Console.WriteLine("5:  Editera gäst ");
+                    Console.WriteLine("6:  Editera rum " );
+                    Console.WriteLine("7:  Avsluta ");
 
                     Console.Write("Val : ");
 

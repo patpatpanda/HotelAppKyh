@@ -69,13 +69,26 @@ namespace HotelAppKyh.Data
         public void EditGuest(AppDbContext myContext)
         {
             Console.Clear();
-            Console.Write("Ange gästId för att ändra gästens uppgiter :");
-            var guestId = int.Parse(Console.ReadLine());
+            
 
+            Console.WriteLine("Id\tFname\t\tLname\t\tPhone");
+            Console.WriteLine("================================================");
+            foreach (var guest in myContext.Guests.OrderBy(x => x.GuestId))
+            {
+
+                Console.WriteLine($"{guest.GuestId}\t{guest.FirstName}\t\t{guest.LastName}\t{guest.PhoneNumber}");
+
+            }
+
+            Console.WriteLine("--------------------------------------------------");
+            Console.Write("Ange id för gäst du vill editera : ");
+            var guestId = int.Parse(Console.ReadLine());
 
             var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
             Console.Clear();
-            Console.WriteLine("Vill du radera gästen tryck 1, vill du ändra uppgifter tryck 2");
+            Console.WriteLine("Vill du radera gästen tryck 1. ");
+            Console.WriteLine("Vill du ändra uppgifter tryck 2. ");
+
             string input = Console.ReadLine();
             string inputToLower = input.ToLower();
             if (inputToLower == "1")

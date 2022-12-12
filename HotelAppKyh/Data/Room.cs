@@ -61,7 +61,6 @@ public class Room
     public void ListAllRooms(AppDbContext myContext)
     {
         Console.Clear();
-        Console.WriteLine(" Bookings information");
         Console.WriteLine("Id\tType\t\tSize\t\tBeds\t\tPrice");
         Console.WriteLine("==============================================================");
         foreach (var room in myContext.Rooms.OrderBy(x => x.RoomId))
@@ -85,7 +84,18 @@ public class Room
 
         var editRoom = new Room();
 
-        Console.Write("Ange rummets id : ");
+        Console.WriteLine("Id\tType\t\tSize\t\tBeds\t\tPrice");
+        Console.WriteLine("==============================================================");
+        foreach (var room in myContext.Rooms.OrderBy(x => x.RoomId))
+        {
+
+            Console.WriteLine($"{room.RoomId}\t{room.RoomType}\t\t{room.RoomSize}kvm\t\t{room.NumberOfBeds}\t\t{room.RoomPrice}");
+
+        }
+
+        Console.WriteLine("---------------------------------------------------------------");
+
+        Console.Write("Ange id för rum du vill editera : ");
         var roomId = int.Parse(Console.ReadLine());
 
         editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
