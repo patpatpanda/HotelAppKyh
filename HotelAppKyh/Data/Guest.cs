@@ -51,12 +51,18 @@ namespace HotelAppKyh.Data
         public void ListAllGuests(AppDbContext myContext)
         {
             Console.Clear();
-
+            Console.WriteLine(" Bookings information");
+            Console.WriteLine("Id\tFname\t\tLname\t\tPhone");
+            Console.WriteLine("================================================");
             foreach (var guest in myContext.Guests.OrderBy(x => x.GuestId))
-                Console.WriteLine(
-                    $" gästId {guest.GuestId}. {guest.FirstName} {guest.LastName}. Telefon : {guest.PhoneNumber}");
+            {
 
-            Console.WriteLine();
+                Console.WriteLine($"{guest.GuestId}\t{guest.FirstName}\t\t{guest.LastName}\t{guest.PhoneNumber}");
+
+            }
+
+            Console.WriteLine("--------------------------------------------------");
+
             Console.WriteLine("Tryck enter för att fortsätta");
             Console.ReadLine();
         }

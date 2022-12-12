@@ -61,6 +61,7 @@ namespace HotelAppKyh.Data
         private void SeedRooms(AppDbContext myContext)
         {
             if (!myContext.Rooms.Any())
+            {
                 myContext.Rooms.Add(new Room()
                 {
                     RoomType = "enkel",
@@ -69,31 +70,31 @@ namespace HotelAppKyh.Data
                     RoomPrice = 1000
 
                 });
-            myContext.Rooms.Add(new Room()
-            {
-                RoomType = "dubbel",
-                RoomSize = 40,
-                NumberOfBeds = 2,
-                RoomPrice = 1200
+                myContext.Rooms.Add(new Room()
+                {
+                    RoomType = "dubbel",
+                    RoomSize = 40,
+                    NumberOfBeds = 2,
+                    RoomPrice = 1200
 
-            });
-            myContext.Rooms.Add(new Room()
-            {
-                RoomType = "dubbel",
-                RoomSize = 50,
-                NumberOfBeds = 2,
-                RoomPrice = 1500
+                });
+                myContext.Rooms.Add(new Room()
+                {
+                    RoomType = "dubbel",
+                    RoomSize = 50,
+                    NumberOfBeds = 2,
+                    RoomPrice = 1500
 
-            });
-            myContext.Rooms.Add(new Room()
-            {
-                RoomType = "dubbel",
-                RoomSize = 70,
-                NumberOfBeds = 2,
-                RoomPrice = 2000
+                });
+                myContext.Rooms.Add(new Room()
+                {
+                    RoomType = "dubbel",
+                    RoomSize = 70,
+                    NumberOfBeds = 2,
+                    RoomPrice = 2000
 
-            });
-
+                });
+            }
         }
     }
 }

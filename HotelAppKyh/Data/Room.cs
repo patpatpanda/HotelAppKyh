@@ -61,11 +61,18 @@ public class Room
     public void ListAllRooms(AppDbContext myContext)
     {
         Console.Clear();
-        foreach (var room in myContext.Rooms)
-            Console.WriteLine($"RumId = {room.RoomId} *** " +
-                              $"Typ av rum = {room.RoomType} *** Storlek = {room.RoomSize}kvm *** Antal sängar = " +
-                              $"{room.NumberOfBeds} *** Pris = {room.RoomPrice} kronor");
-        Console.WriteLine();
+        Console.WriteLine(" Bookings information");
+        Console.WriteLine("Id\tType\t\tSize\t\tBeds\t\tPrice");
+        Console.WriteLine("==============================================================");
+        foreach (var room in myContext.Rooms.OrderBy(x => x.RoomId))
+        { 
+            
+            Console.WriteLine($"{room.RoomId}\t{room.RoomType}\t\t{room.RoomSize}kvm\t\t{room.NumberOfBeds}\t\t{room.RoomPrice}");
+
+        }
+
+        Console.WriteLine("---------------------------------------------------------------"); 
+      
         Console.WriteLine("Tryck enter för att fortsätta");
         Console.ReadLine();
     }
