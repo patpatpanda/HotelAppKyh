@@ -18,10 +18,7 @@ namespace HotelAppKyh
             var buildApp = new Builder();
             var myContext = buildApp.AppBuilder();
             
-            
-            var guest = new Guest();
-            var room = new Room();
-            var reservation = new Reservation();
+          
             
             while (true)
             {
@@ -42,19 +39,18 @@ namespace HotelAppKyh
 
                 }
 
-                    if (inuput == 3)
-                        guest.ListAllGuests(myContext);
+                if (inuput == 3)
+                {
+                    var action = new ListGuests(myContext);
+                    action.run();
+                }
 
-                    if (inuput == 4)
-                        room.ListAllRooms(myContext);
+                if (inuput == 4)
+                {
+                    Console.WriteLine("adsad");
+                }
 
-                    if(inuput == 5)
-                        guest.EditGuest(myContext);
-
-                    if(inuput == 6)
-                        room.EditRoom(myContext);
-
-                    if (inuput == 7)
+                    
                     
                         
                         break;
