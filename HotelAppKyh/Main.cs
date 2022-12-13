@@ -47,7 +47,7 @@ namespace HotelAppKyh
 
                 if (inuput == 4)
                 {
-                    
+                    Console.WriteLine("adsad");
                 }
 
                     
