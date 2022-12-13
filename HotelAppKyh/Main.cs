@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using HotelAppKyh.Controllers;
 
 namespace HotelAppKyh
 {
@@ -14,70 +15,52 @@ namespace HotelAppKyh
     {
         public void run()
         {
-            var builder = new ConfigurationBuilder().AddJsonFile($"appsettings.json", true, true);
-            var config = builder.Build();
-
-            var options = new DbContextOptionsBuilder<AppDbContext>();
-            var connectionString = config.GetConnectionString("DefaultConnection");
-            options.UseSqlServer(connectionString);
-
-            var myContext = new AppDbContext(options.Options);
-
-            var dataSeeder  = new DataSeeder();
-            dataSeeder.MigrateAndSeed(myContext);
+            var buildApp = new Builder();
+            var myContext = buildApp.AppBuilder();
+            
+            
             var guest = new Guest();
             var room = new Room();
-
+            var reservation = new Reservation();
             
             while (true)
             {
-                try
+                var inuput = MainMenu.ShowMenu();
+
+                if (inuput == 1)
                 {
-                    Console.Clear();
-                    Console.WriteLine("1:  Skapa ny gäst");
-                    Console.WriteLine("2:  Skapa nytt rum");
-                    Console.WriteLine("3:  Lista alla gäster");
-                    Console.WriteLine("4:  Lista alla rum");
-                    Console.WriteLine("5:  Editera gäst ");
-                    Console.WriteLine("6:  Editera rum " );
-                    Console.WriteLine("7:  Avsluta ");
+                    var action = new CreateGuest(myContext);
+                    action.run();   
 
-                    Console.Write("Val : ");
+                }
+                
+                if (inuput == 2)
 
-                    string inuput = Console.ReadLine();
+                {
+                    var action = new CreateRoom(myContext);
+                    action.run();
 
-                    if (inuput == "1")
+                }
 
-                        guest.AddGuest(myContext);
-
-                    if (inuput == "2")
-                        room.CreateRoom(myContext);
-
-                    if (inuput == "3")
+                    if (inuput == 3)
                         guest.ListAllGuests(myContext);
 
-                    if (inuput == "4")
+                    if (inuput == 4)
                         room.ListAllRooms(myContext);
 
-                    if(inuput == "5")
+                    if(inuput == 5)
                         guest.EditGuest(myContext);
 
-                    if(inuput == "6")
+                    if(inuput == 6)
                         room.EditRoom(myContext);
 
-                    if (inuput == "7")
+                    if (inuput == 7)
                     
                         
                         break;
                     
-                        
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    Console.WriteLine("Tryck enter för att fortsätta");
-                    Console.ReadLine();
-                }
+
+                
 
                
 
