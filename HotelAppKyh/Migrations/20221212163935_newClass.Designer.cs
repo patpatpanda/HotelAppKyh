@@ -4,6 +4,7 @@ using HotelAppKyh.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelAppKyh.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221212163935_newClass")]
+    partial class newClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,23 +57,23 @@ namespace HotelAppKyh.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("BookedGuestGuestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookedRoomRoomId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateEnd")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateStart")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("GuestId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("GuestId");
+                    b.HasIndex("BookedGuestGuestId");
 
-                    b.HasIndex("RoomId");
+                    b.HasIndex("BookedRoomRoomId");
 
                     b.ToTable("Reservations");
                 });
@@ -104,21 +106,21 @@ namespace HotelAppKyh.Migrations
 
             modelBuilder.Entity("HotelAppKyh.Data.Reservation", b =>
                 {
-                    b.HasOne("HotelAppKyh.Data.Guest", "Guest")
+                    b.HasOne("HotelAppKyh.Data.Guest", "BookedGuest")
                         .WithMany()
-                        .HasForeignKey("GuestId")
+                        .HasForeignKey("BookedGuestGuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelAppKyh.Data.Room", "Room")
+                    b.HasOne("HotelAppKyh.Data.Room", "BookedRoom")
                         .WithMany()
-                        .HasForeignKey("RoomId")
+                        .HasForeignKey("BookedRoomRoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Guest");
+                    b.Navigation("BookedGuest");
 
-                    b.Navigation("Room");
+                    b.Navigation("BookedRoom");
                 });
 #pragma warning restore 612, 618
         }

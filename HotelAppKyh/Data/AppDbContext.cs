@@ -11,6 +11,7 @@ namespace HotelAppKyh.Data
     {
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
         public AppDbContext()
         {
@@ -22,13 +23,13 @@ namespace HotelAppKyh.Data
         {
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer(@"Server=.;Database=EmilHotelApp;Trusted_Connection=True;TrustServerCertificate=true;");
-        //    }
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=.;Database=EmilHotelApp;Trusted_Connection=True;TrustServerCertificate=true;");
+            }
+        }
     }
 }
 
