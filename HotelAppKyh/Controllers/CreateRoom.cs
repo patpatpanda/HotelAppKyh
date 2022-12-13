@@ -15,7 +15,8 @@ internal class CreateRoom
     {
         Console.Clear();
         var room = new Room();
-        Console.Write("Ange typ av rum : ");
+        Console.WriteLine("Ange typ av rum  ");
+        Console.Write("enkel eller dubbel: ");
 
         room.RoomType = Console.ReadLine().ToLower();
         while (true)
@@ -35,7 +36,7 @@ internal class CreateRoom
             if (room.RoomType != "dubbel" || room.RoomType != "enkel")
             {
                 Console.Clear();
-                Console.WriteLine("enkel eller dubbel är enda valid typ av rum");
+                Console.WriteLine("Felaktigt val");
                 Console.Write("Ange typ av rum : ");
 
                 room.RoomType = Console.ReadLine().ToLower();
@@ -46,7 +47,7 @@ internal class CreateRoom
         room.RoomSize = int.Parse(Console.ReadLine());
         Console.Write("Ange pris för rummet : ");
         room.RoomPrice = int.Parse(Console.ReadLine());
-
+        Console.Clear();
         Console.WriteLine("Rummet har skapats!");
         Console.WriteLine("Tryck enter för att fortsätta");
         Console.ReadLine();

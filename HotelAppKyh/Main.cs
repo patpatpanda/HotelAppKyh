@@ -50,10 +50,14 @@ namespace HotelAppKyh
                     Console.WriteLine("adsad");
                 }
 
-                    
-                    
-                        
-                        break;
+
+                if (inuput == 0)
+                {
+                    break;
+
+                }
+
+                
                     
 
                 
