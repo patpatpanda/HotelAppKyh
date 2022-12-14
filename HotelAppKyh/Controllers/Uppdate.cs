@@ -101,6 +101,16 @@ public class Uppdate
                 Console.WriteLine("2 sängar har lagts till");
             }
         }
+        else if (editRoom.RoomType == "dubbel" && editRoom.RoomSize > 50 && editRoom.NumberOfBeds == 3)
+        {
+            Console.WriteLine("Det finns möjlighet att lägga till 1 säng");
+            Console.Write("Vill du göra det yes/no: ");
+            var inuput = Console.ReadLine();
+            if (inuput == "yes") editRoom.NumberOfBeds = 4;
+
+
+            if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
+        }
         else
         {
             Console.WriteLine("Rummet har redan max antal sängar!");
