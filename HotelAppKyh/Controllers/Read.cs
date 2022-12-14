@@ -7,18 +7,20 @@ using System.Threading.Tasks;
 
 namespace HotelAppKyh.Controllers
 {
-    internal class ListGuests
+    public class Read
     {
+
         public AppDbContext myContext { get; set; }
-        public ListGuests(AppDbContext context)
+
+        public Read(AppDbContext context)
         {
             myContext = context;
         }
 
-        public void run()
+        public void ListGuest()
         {
             Console.Clear();
-            Console.WriteLine(" Bookings information");
+            
             Console.WriteLine("Id\tFname\t\tLname\t\tPhone");
             Console.WriteLine("================================================");
             foreach (var guest in myContext.Guests.OrderBy(x => x.GuestId))
@@ -29,6 +31,25 @@ namespace HotelAppKyh.Controllers
             }
 
             Console.WriteLine("--------------------------------------------------");
+
+            Console.WriteLine("Tryck enter för att fortsätta");
+            Console.ReadLine();
+        }
+
+        public void ListRoom()
+        {
+            Console.Clear();
+            Console.WriteLine("Id\tType\t\tSize\t\tBeds\t\tPrice");
+            Console.WriteLine("==============================================================");
+            foreach (var room in myContext.Rooms.OrderBy(x => x.RoomId))
+            {
+
+                Console.WriteLine(
+                    $"{room.RoomId}\t{room.RoomType}\t\t{room.RoomSize}kvm\t\t{room.NumberOfBeds}\t\t{room.RoomPrice}");
+
+            }
+
+            Console.WriteLine("---------------------------------------------------------------");
 
             Console.WriteLine("Tryck enter för att fortsätta");
             Console.ReadLine();

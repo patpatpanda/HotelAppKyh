@@ -1,86 +1,53 @@
-﻿using HotelAppKyh.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using HotelAppKyh.Controllers;
+﻿using HotelAppKyh.Controllers;
 
-namespace HotelAppKyh
+namespace HotelAppKyh;
+
+public class Main
 {
-    public class Main
+    public void run()
     {
-        public void run()
+        try
         {
             var buildApp = new Builder();
             var myContext = buildApp.AppBuilder();
-            
-          
-            
+            var create = new Create(myContext);
+            var Read = new Read(myContext);
+            var uppdate = new Uppdate(myContext);
+            var delete = new Delete(myContext);
             while (true)
             {
                 var inuput = MainMenu.ShowMenu();
 
-                if (inuput == 1)
-                {
-                    var action = new CreateGuest(myContext);
-                    action.run();   
+                if (inuput == 1) create.AddGuest();
 
-                }
+                if (inuput == 2) create.AddRoom();
+
+                if (inuput == 3) Read.ListGuest();
+
+                if (inuput == 4) Read.ListRoom();
+
+                if (inuput == 5) uppdate.UppdateGuest();
                 
-                if (inuput == 2)
+                if(inuput == 6) uppdate.UppdateRoom();
 
-                {
-                    var action = new CreateRoom(myContext);
-                    action.run();
-
-                }
-
-                if (inuput == 3)
-                {
-                    var action = new ListGuests(myContext);
-                    action.run();
-                }
-
-                if (inuput == 4)
-                {
-                    Console.WriteLine("adsad");
-                }
+                if(inuput == 7) uppdate.AddBed();
+                
+                if(inuput == 8 ) delete.DeleteGuest();
+               
+                if(inuput == 9 ) delete.DeleteRoom();
 
 
                 if (inuput == 0)
                 {
                     break;
-
                 }
-
-                
-                    
-
-                
-
-               
-
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        
     }
 }
+
