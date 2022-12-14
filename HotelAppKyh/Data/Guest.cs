@@ -13,7 +13,6 @@ namespace HotelAppKyh.Data
         public string LastName { get; set; }
         public string PhoneNumber  { get; set; }
 
-
         public void NewGuestProps(string newFirstName, string newLastName, string newPhoneNumber)
         {
 
@@ -25,97 +24,8 @@ namespace HotelAppKyh.Data
         }
 
 
-        public void AddGuest(AppDbContext myContext)
-        {
-            Console.Clear();
-            var guest = new Guest();
-            Console.Write("Ange förstanamn : ");
-            guest.FirstName = Console.ReadLine();
-
-            Console.Write("Ange efternamn : ");
-            guest.LastName = Console.ReadLine();
-            Console.Write("Ange telefonnummer : ");
-            guest.PhoneNumber = Console.ReadLine();
-
-           
-
-            myContext.Guests.Add(guest);
-            myContext.SaveChanges();
-
-            Console.WriteLine("Gäst skapad!");
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
-
-        }
-
-        public void ListAllGuests(AppDbContext myContext)
-        {
-            Console.Clear();
-            Console.WriteLine(" Bookings information");
-            Console.WriteLine("Id\tFname\t\tLname\t\tPhone");
-            Console.WriteLine("================================================");
-            foreach (var guest in myContext.Guests.OrderBy(x => x.GuestId))
-            {
-
-                Console.WriteLine($"{guest.GuestId}\t{guest.FirstName}\t\t{guest.LastName}\t{guest.PhoneNumber}");
-
-            }
-
-            Console.WriteLine("--------------------------------------------------");
-
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
-        }
-        public void EditGuest(AppDbContext myContext)
-        {
-            Console.Clear();
-            
-
-            Console.WriteLine("Id\tFname\t\tLname\t\tPhone");
-            Console.WriteLine("================================================");
-            foreach (var guest in myContext.Guests.OrderBy(x => x.GuestId))
-            {
-
-                Console.WriteLine($"{guest.GuestId}\t{guest.FirstName}\t\t{guest.LastName}\t{guest.PhoneNumber}");
-
-            }
-
-            Console.WriteLine("--------------------------------------------------");
-            Console.Write("Ange id för gäst du vill editera : ");
-            var guestId = int.Parse(Console.ReadLine());
-
-            var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
-            Console.Clear();
-            Console.WriteLine("Vill du radera gästen tryck 1. ");
-            Console.WriteLine("Vill du ändra uppgifter tryck 2. ");
-
-            string input = Console.ReadLine();
-            string inputToLower = input.ToLower();
-            if (inputToLower == "1")
-            {
-                myContext.Remove(editGuest);
-            }
-            else if (inputToLower == "2")
-            {
-                Console.Clear();
-                Console.Write("Förnamn : ");
-                var firstName = Console.ReadLine();
-                Console.Write("Efternamn : ");
-                var lastName = Console.ReadLine();
-                Console.Write("Telefonummer : ");
-                var nummer = Console.ReadLine();
-                editGuest.NewGuestProps(firstName, lastName, nummer);
-                Console.WriteLine("Uppgifter uppdaterade!");
-            }
-           
-
-            Console.WriteLine();
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
-
-
-            myContext.SaveChanges();
-        }
 
     }
-}
+
+    }
+
