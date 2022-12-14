@@ -36,8 +36,8 @@ namespace HotelAppKyh.Data
                 });
                 myContext.Guests.Add(new Guest()
                 {
-                    FirstName = "Spinelli",
-                    LastName = "Adams",
+                    FirstName = "Andy",
+                    LastName = "Oozthezien",
                     PhoneNumber = "07014567"
                 });
                 myContext.Guests.Add(new Guest()
