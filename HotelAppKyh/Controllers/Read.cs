@@ -26,7 +26,7 @@ namespace HotelAppKyh.Controllers
             foreach (var guest in myContext.Guests.OrderBy(x => x.GuestId))
             {
 
-                Console.WriteLine($"{guest.GuestId}\t{guest.FirstName}\t\t{guest.LastName}\t{guest.PhoneNumber}");
+                Console.WriteLine($"{guest.GuestId}\t{guest.FirstName}\t\t{guest.LastName}\t\t{guest.PhoneNumber}");
 
             }
 

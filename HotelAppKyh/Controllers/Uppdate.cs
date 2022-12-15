@@ -10,7 +10,7 @@ public class Uppdate
     }
 
     public AppDbContext myContext { get; set; }
-
+    
     public void UppdateGuest()
     {
         var read = new Read(myContext);
@@ -65,11 +65,14 @@ public class Uppdate
     {
         var read = new Read(myContext);
         read.ListRoom();
+
         Console.Write("Ange id för rum du vill lägga till säng : ");
         var roomId = int.Parse(Console.ReadLine());
 
         var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
         Console.Clear();
+
+        
 
         if (editRoom.RoomType == "dubbel" && editRoom.RoomSize >= 40 && editRoom.RoomSize <= 50 &&
             editRoom.NumberOfBeds == 2)
@@ -80,7 +83,7 @@ public class Uppdate
             if (inuput == "yes") editRoom.NumberOfBeds = 3;
 
 
-            if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
+           else if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
         }
 
         else if (editRoom.RoomType == "dubbel" && editRoom.RoomSize > 50 && editRoom.NumberOfBeds == 2)
@@ -122,4 +125,7 @@ public class Uppdate
         Console.ReadLine();
         myContext.SaveChanges();
     }
+
 }
+
+   
