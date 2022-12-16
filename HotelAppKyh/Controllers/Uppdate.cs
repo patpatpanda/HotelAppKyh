@@ -29,25 +29,21 @@ public class Uppdate
         Console.Write("Telefonummer : ");
         var nummer = Console.ReadLine();
         editGuest.NewGuestProps(firstName, lastName, nummer);
-        Console.WriteLine("Uppgifter uppdaterade!");
+        
 
 
-        Console.WriteLine();
-        Console.WriteLine("Tryck enter för att fortsätta");
-        Console.ReadLine();
+        
 
 
         myContext.SaveChanges();
+        ContinueMessage();
     }
+
+   
 
     public void UppdateRoom()
     {
-        var read = new Read(myContext);
-        read.ListRoom();
-        Console.Write("Ange id för rum du vill editera : ");
-        var roomId = int.Parse(Console.ReadLine());
-
-        var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
+        var roomId = GetRoomId();
         Console.Clear();
         Console.Write("Ange typ av rum : ");
         
@@ -57,59 +53,52 @@ public class Uppdate
         var newSizeOfRoom = int.Parse(Console.ReadLine());
         Console.Write("Pris : ");
         var newPrice = int.Parse(Console.ReadLine());
-        editRoom.NewRoomProps(newTypeOfRoom, newSizeOfRoom, newPrice);
+        roomId.NewRoomProps(newTypeOfRoom, newSizeOfRoom, newPrice);
         Console.WriteLine("Rummet har uppdaterats!");
+       ContinueMessage();
     }
 
     public void AddBed()
     {
-        var read = new Read(myContext);
-        read.ListRoom();
+        var roomId = GetRoomId();
 
-        Console.Write("Ange id för rum du vill lägga till säng : ");
-        var roomId = int.Parse(Console.ReadLine());
 
-        var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
-        Console.Clear();
-
-        
-
-        if (editRoom.RoomType == "dubbel" && editRoom.RoomSize >= 40 && editRoom.RoomSize <= 50 &&
-            editRoom.NumberOfBeds == 2)
+        if (roomId.RoomType == "dubbel" && roomId.RoomSize >= 40 && roomId.RoomSize <= 50 &&
+            roomId.NumberOfBeds == 2)
         {
             Console.WriteLine("Det finns möjlighet att lägga till 1 säng!");
             Console.Write("Vill du göra det yes/no: ");
             var inuput = Console.ReadLine();
-            if (inuput == "yes") editRoom.NumberOfBeds = 3;
+            if (inuput == "yes") roomId.NumberOfBeds = 3;
 
 
            else if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
         }
 
-        else if (editRoom.RoomType == "dubbel" && editRoom.RoomSize > 50 && editRoom.NumberOfBeds == 2)
+        else if (roomId.RoomType == "dubbel" && roomId.RoomSize > 50 && roomId.NumberOfBeds == 2)
         {
             Console.WriteLine("Det finns möjlighet att lägga till 1 eller 2 sängar");
             Console.Write("Hur många vill du lägga till: ");
             var innput3 = Console.ReadLine();
             if (innput3 == "1")
             {
-                editRoom.NumberOfBeds = 3;
+                roomId.NumberOfBeds = 3;
                 Console.WriteLine("1 säng har lagts till");
             }
 
 
             else if (innput3 == "2")
             {
-                editRoom.NumberOfBeds = 4;
+                roomId.NumberOfBeds = 4;
                 Console.WriteLine("2 sängar har lagts till");
             }
         }
-        else if (editRoom.RoomType == "dubbel" && editRoom.RoomSize > 50 && editRoom.NumberOfBeds == 3)
+        else if (roomId.RoomType == "dubbel" && roomId.RoomSize > 50 && roomId.NumberOfBeds == 3)
         {
             Console.WriteLine("Det finns möjlighet att lägga till 1 säng");
             Console.Write("Vill du göra det yes/no: ");
             var inuput = Console.ReadLine();
-            if (inuput == "yes") editRoom.NumberOfBeds = 4;
+            if (inuput == "yes") roomId.NumberOfBeds = 4;
 
 
             if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
@@ -119,13 +108,33 @@ public class Uppdate
             Console.WriteLine("Rummet har redan max antal sängar!");
         }
 
+        ContinueMessage();
 
-        Console.WriteLine();
-        Console.WriteLine("Tryck enter for att fortsätta");
-        Console.ReadLine();
         myContext.SaveChanges();
     }
 
+    private Room GetRoomId()
+    {
+        var read = new Read(myContext);
+        read.ListRoom();
+
+        Console.Write("Ange id för rum du vill uppdatera : ");
+        var roomId = int.Parse(Console.ReadLine());
+
+        var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
+        Console.Clear();
+        return editRoom;
+    }
+    private static void ContinueMessage()
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Lyckades !");
+        Console.WriteLine();
+        Console.WriteLine("Tryck enter för att fortsätta");
+        Console.ReadLine();
+        Console.ResetColor();
+    }
 }
 
    

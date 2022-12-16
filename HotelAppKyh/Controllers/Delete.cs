@@ -10,15 +10,18 @@ namespace HotelAppKyh.Controllers
 {
     public class Delete
     {
+        public  Read read { get; set; }
         public AppDbContext myContext { get; set; }
         public Delete(AppDbContext context)
         {
             myContext = context;
         }
 
+        
         public void DeleteGuest()
         {
-            var read = new Read(myContext);
+            
+            
             read.ListGuest();
             Console.Write("Ange id för gäst du vill radera: ");
             int guestId = int.Parse(Console.ReadLine());
@@ -28,10 +31,10 @@ namespace HotelAppKyh.Controllers
             myContext.Guests.Remove(delete);
             myContext.SaveChanges();
 
-            Console.WriteLine("Gästen har raderats!");
-            Console.Write("Tryck Enter för att fortsätta");
-            Console.ReadLine();
+            ContinueMessage();
         }
+
+       
 
         public void DeleteRoom()
         {
@@ -43,10 +46,14 @@ namespace HotelAppKyh.Controllers
             
             myContext.Rooms.Remove(delete);
             myContext.SaveChanges();
-            Console.WriteLine("Rummet har raderats!");
+           ContinueMessage();
+
+        }
+        private static void ContinueMessage()
+        {
+            Console.WriteLine("Lyckades !");
             Console.Write("Tryck Enter för att fortsätta");
             Console.ReadLine();
-
         }
     }
 }

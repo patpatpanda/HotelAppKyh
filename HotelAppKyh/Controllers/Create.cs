@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelAppKyh.Controllers
 {
-   public class Create
+   public class Create : Reservation
     {
         public AppDbContext myContext { get; set; }
         public Create(AppDbContext context)
@@ -31,10 +31,7 @@ namespace HotelAppKyh.Controllers
 
             myContext.Guests.Add(guest);
             myContext.SaveChanges();
-
-            Console.WriteLine("Gäst skapad!");
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
+            ContinueMessage();
         }
 
         public void AddRoom()
@@ -74,12 +71,18 @@ namespace HotelAppKyh.Controllers
             Console.Write("Ange pris för rummet : ");
             room.RoomPrice = int.Parse(Console.ReadLine());
             
-            Console.Clear();
-            Console.WriteLine("Rummet har skapats!");
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
+           
             myContext.Add(room);
             myContext.SaveChanges();
+            ContinueMessage();
+        }
+
+        private static void ContinueMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("Lyckades !");
+            Console.WriteLine("Tryck enter för att fortsätta");
+            Console.ReadLine();
         }
     }
 }

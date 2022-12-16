@@ -17,12 +17,13 @@ public static class MainMenu
         Console.WriteLine("                             |    ****         7:  Lägg till säng     ****       |");
         Console.WriteLine("                             |    ****         8:  Radera gäst        ****       |");
         Console.WriteLine("                             |    ****         9:  Radera rum         ****       |");
-        Console.WriteLine("                             |                                                   |");
-        Console.WriteLine("                             |    ****         0:  Avsluta            ****       |");
+        Console.WriteLine("                             |    ****         9:  Radera rum         ****       |");
+        Console.WriteLine("                             |    ****         10: Gör en bokning     ****       |");
 
+        Console.WriteLine("                             |    ****         0:  Avsluta            ****       |");
         Console.WriteLine("                             ------------------------------------------------------");
         Console.ResetColor();
-        Console.ForegroundColor = ConsoleColor.DarkRed;
+        Console.ForegroundColor = ConsoleColor.DarkBlue;
         Console.Write("                                                    Val : ");
         Console.ResetColor();
         var inuput = int.Parse(Console.ReadLine());
