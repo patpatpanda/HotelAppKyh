@@ -32,8 +32,6 @@ namespace HotelAppKyh.Controllers
 
             Console.WriteLine("--------------------------------------------------");
 
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
         }
 
         public void ListRoom()
@@ -51,8 +49,7 @@ namespace HotelAppKyh.Controllers
 
             Console.WriteLine("---------------------------------------------------------------");
 
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
+            
         }
     }
 }

@@ -80,9 +80,12 @@ namespace HotelAppKyh.Controllers
         private static void ContinueMessage()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Lyckades !");
+            Console.WriteLine();
             Console.WriteLine("Tryck enter för att fortsätta");
             Console.ReadLine();
+            Console.ResetColor();
         }
     }
 }

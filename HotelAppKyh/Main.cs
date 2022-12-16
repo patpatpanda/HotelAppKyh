@@ -39,7 +39,7 @@ public class Main
                
                else if(inuput == 9 ) delete.DeleteRoom();
                 
-                else if(inuput == 10) res.MakeReservation(myContext);
+              
 
 
              else   if (inuput == 0)
