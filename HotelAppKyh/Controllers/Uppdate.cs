@@ -13,14 +13,7 @@ public class Uppdate
     
     public void UppdateGuest()
     {
-        var read = new Read(myContext);
-        read.ListGuest();
-
-        Console.WriteLine("--------------------------------------------------");
-        Console.Write("Ange id för gäst du vill editera : ");
-        var guestId = int.Parse(Console.ReadLine());
-        var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
-
+        var guestId = GetGuestId();
         Console.Clear();
         Console.Write("Förnamn : ");
         var firstName = Console.ReadLine();
@@ -28,18 +21,25 @@ public class Uppdate
         var lastName = Console.ReadLine();
         Console.Write("Telefonummer : ");
         var nummer = Console.ReadLine();
-        editGuest.NewGuestProps(firstName, lastName, nummer);
+        guestId.NewGuestProps(firstName, lastName, nummer);
         
-
-
         
-
-
         myContext.SaveChanges();
         ContinueMessage();
     }
 
-   
+    private Guest GetGuestId()
+    {
+        var read = new Read(myContext);
+        read.ListGuest();
+        Console.Write("Ange id för gäst du vill uppdtera : ");
+        
+    
+        var guestId = int.Parse(Console.ReadLine());
+        var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
+        return editGuest;
+    }
+
 
     public void UppdateRoom()
     {
@@ -47,7 +47,6 @@ public class Uppdate
         Console.Clear();
         Console.Write("Ange typ av rum : ");
         
-
         var newTypeOfRoom = Console.ReadLine().ToLower();
         Console.Write("Ange storlek :");
         var newSizeOfRoom = int.Parse(Console.ReadLine());

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelAppKyh.Controllers
 {
@@ -20,18 +21,30 @@ namespace HotelAppKyh.Controllers
         
         public void DeleteGuest()
         {
-            
+            var read = new Read(myContext);
             
             read.ListGuest();
             Console.Write("Ange id för gäst du vill radera: ");
             int guestId = int.Parse(Console.ReadLine());
             var delete = myContext.Guests.First(x => x.GuestId == guestId);
+            var checkFor = myContext.Reservations.Any(x => x.Guest == delete);
+            if (checkFor)
+            {
+                Console.Clear();
+                Console.WriteLine("Gäst kan ej tas bort !");
+                Console.WriteLine();
+                Console.WriteLine("Tryck enter för att fortsätta ");
+                Console.ReadLine();
+            }
+            else if (!checkFor)
+            {
+                myContext.Guests.Remove(delete);
+                myContext.SaveChanges();
+                ContinueMessage();
+            }
             
 
-            myContext.Guests.Remove(delete);
-            myContext.SaveChanges();
-
-            ContinueMessage();
+           
         }
 
        

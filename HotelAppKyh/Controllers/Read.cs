@@ -17,6 +17,8 @@ namespace HotelAppKyh.Controllers
             myContext = context;
         }
 
+        
+
         public void ListGuest()
         {
             Console.Clear();
@@ -32,6 +34,8 @@ namespace HotelAppKyh.Controllers
 
             Console.WriteLine("--------------------------------------------------");
 
+            Console.WriteLine("Tryck Enter för fortsätta !");
+            Console.ReadLine();
         }
 
         public void ListRoom()
@@ -48,8 +52,8 @@ namespace HotelAppKyh.Controllers
             }
 
             Console.WriteLine("---------------------------------------------------------------");
-
-            
+            Console.WriteLine("Tryck Enter för fortsätta !");
+            Console.ReadLine();
         }
     }
 }

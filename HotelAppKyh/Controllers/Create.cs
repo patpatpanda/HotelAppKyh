@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HotelAppKyh.Controllers
 {
-   public class Create : Reservation
+   public class Create 
     {
         public AppDbContext myContext { get; set; }
         public Create(AppDbContext context)
@@ -87,5 +88,119 @@ namespace HotelAppKyh.Controllers
             Console.ReadLine();
             Console.ResetColor();
         }
+
+        public void CreateReservation()
+        {
+            var reservation = new Reservation();
+            var guestReservation = new Guest();
+            var read = new Read(myContext);
+            read.ListGuest();
+            Console.Write("Ange id för gästen som ska boka :");
+            var guestId = int.Parse(Console.ReadLine());
+            var guest = myContext.Guests.First(x => x.GuestId == guestId);
+            guestReservation.FirstName = guest.FirstName;
+            guestReservation.LastName = guest.LastName;
+            guestReservation.PhoneNumber = guest.PhoneNumber;
+
+            reservation.Guest = guestReservation;
+           
+
+
+            Console.Write("Hur många nätter ? :");
+            int numberOfNightsStaying = int.Parse(Console.ReadLine());
+            Console.Write("Vilket datum vill du checka in ? :");
+            reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
+            reservation.DateEnd = reservation.DateStart.AddDays(numberOfNightsStaying);
+
+
+
+
+            List<DateTime> newBookingAllDates = new List<DateTime>();
+            for (var dt = reservation.DateStart; dt <= reservation.DateEnd; dt = dt.AddDays(1))
+            {
+                newBookingAllDates.Add(dt);
+            }
+
+            List<Room> availableCars = new List<Room>();
+
+            foreach (var room in myContext.Rooms.ToList())
+            {
+                bool carIsFree = true;
+                foreach (var booking in myContext.Reservations.Include(b => b.Room).Where(b => b.Room == room))
+                {
+                    for (var dt = booking.DateStart; dt <= booking.DateEnd; dt = dt.AddDays(1))
+                    {
+                        if (newBookingAllDates.Contains(dt))
+                        {
+                            carIsFree = false;
+
+                        }
+
+                    }
+
+                    if (!carIsFree)
+                    {
+                        break;
+                    }
+                }
+
+
+                if (carIsFree)
+                {
+                    availableCars.Add(room);
+                }
+
+               
+            }
+
+
+            if (availableCars.Count() < 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n\n Det finns inga lediga rum för valt datum");
+                Console.ForegroundColor = ConsoleColor.Gray;
+
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+                return; 
+            }
+            else
+            {
+                
+                Console.WriteLine("\n\n\n Lediga rum redo att bokas");
+                Console.WriteLine("\n Id\tTyp\t\tStorlek\t\tSängar\t\tPris");
+                Console.WriteLine(" ==================================================================");
+
+                foreach (var car in availableCars.OrderBy(r => r.RoomId))
+                {
+                    Console.WriteLine($" {car.RoomId}\t{car.RoomType}\t\t{car.RoomSize}\t\t{car.NumberOfBeds}\t\t{car.RoomPrice}");
+                    Console.WriteLine(" ------------------------------------------------------------------");
+                }
+            }
+
+
+
+            Console.WriteLine("\n Välja mellan dessa rum (ange id)");
+            int roomId = int.Parse(Console.ReadLine());
+            reservation.Room = myContext.Rooms
+                .Where(c => c.RoomId == roomId)
+                .FirstOrDefault();
+
+            myContext.Add(reservation);
+            myContext.SaveChanges();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Clear();
+            Console.WriteLine(" Bookningen lyckades!");
+            Console.WriteLine(" ==============================================================================");
+            Console.WriteLine(" Start\t\tEnd\t\tNo. of days");
+            Console.WriteLine($" {reservation.DateStart.ToShortDateString()}\t{reservation.DateEnd.ToShortDateString()}\t{numberOfNightsStaying}");
+            Console.ForegroundColor = ConsoleColor.Gray;
+
+            Console.WriteLine("\n Tryck enter för att fortsätta");
+            Console.ReadLine();
+
+        }
+
     }
 }

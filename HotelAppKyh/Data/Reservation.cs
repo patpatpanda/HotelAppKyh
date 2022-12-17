@@ -19,6 +19,43 @@ namespace HotelAppKyh.Data
         public Guest? Guest { get; set; }
         public Room? Room { get; set; }
 
+        public Reservation(AppDbContext context)
+        {
+            myContext = context;
+        }
+
+        public Reservation()
+        {
+        }
+
+        public AppDbContext myContext { get; set; }
+
+        public void CreateReservation()
+        {
+            var res = new Reservation(myContext);
+            var guest = new Guest();
+            guest.FirstName = "fdfdf";
+            guest.LastName = "334";
+            guest.PhoneNumber = "3232";
+            res.Guest = guest;
+
+
+            var room = new Room();
+            room.RoomType = "dsd";
+            room.NumberOfBeds = 2;
+            room.RoomSize = 30;
+            room.RoomPrice = 500;
+
+
+            res.Room = room;
+            
+            res.DateStart = Convert.ToDateTime(Console.ReadLine());
+            res.DateEnd = Convert.ToDateTime(Console.ReadLine());
+            myContext.Add(res);
+            myContext.SaveChanges();
+        }
+
+        
     }
 
 

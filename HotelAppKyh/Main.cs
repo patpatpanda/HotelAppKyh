@@ -15,7 +15,10 @@ public class Main
             var Read = new Read(myContext);
             var uppdate = new Uppdate(myContext);
             var delete = new Delete(myContext);
-            var res = new Reservation();
+            var res = new Reservation(myContext);
+
+
+            
 
             while (true)
             {
@@ -38,7 +41,7 @@ public class Main
              else   if(inuput == 8 ) delete.DeleteGuest();
                
                else if(inuput == 9 ) delete.DeleteRoom();
-                
+                else if(inuput == 10) create.CreateReservation();
               
 
 
