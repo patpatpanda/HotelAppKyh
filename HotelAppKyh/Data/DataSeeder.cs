@@ -30,26 +30,26 @@ namespace HotelAppKyh.Data
                 myContext.Guests.Add(new Guest()
                 {
                     FirstName = "Gus",
-                    LastName = "Griswald",
+                    LastName = "Gris",
                     PhoneNumber = "07334567"
 
                 });
                 myContext.Guests.Add(new Guest()
                 {
-                    FirstName = "Spinelli",
-                    LastName = "Adams",
+                    FirstName = "Andy",
+                    LastName = "Oozt",
                     PhoneNumber = "07014567"
                 });
                 myContext.Guests.Add(new Guest()
                 {
                     FirstName = "Tobbe",
-                    LastName = "Dethweiler",
+                    LastName = "Deth",
                     PhoneNumber = "07034537"
                 });
                 myContext.Guests.Add(new Guest()
                 {
                     FirstName = "Mike",
-                    LastName = "Bloomberg",
+                    LastName = "Blom",
                     PhoneNumber = "07039567"
                 });
 

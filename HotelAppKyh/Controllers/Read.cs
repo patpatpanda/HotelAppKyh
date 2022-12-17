@@ -17,6 +17,8 @@ namespace HotelAppKyh.Controllers
             myContext = context;
         }
 
+        
+
         public void ListGuest()
         {
             Console.Clear();
@@ -26,13 +28,13 @@ namespace HotelAppKyh.Controllers
             foreach (var guest in myContext.Guests.OrderBy(x => x.GuestId))
             {
 
-                Console.WriteLine($"{guest.GuestId}\t{guest.FirstName}\t\t{guest.LastName}\t{guest.PhoneNumber}");
+                Console.WriteLine($"{guest.GuestId}\t{guest.FirstName}\t\t{guest.LastName}\t\t{guest.PhoneNumber}");
 
             }
 
             Console.WriteLine("--------------------------------------------------");
 
-            Console.WriteLine("Tryck enter för att fortsätta");
+            Console.WriteLine("Tryck Enter för fortsätta !");
             Console.ReadLine();
         }
 
@@ -50,8 +52,7 @@ namespace HotelAppKyh.Controllers
             }
 
             Console.WriteLine("---------------------------------------------------------------");
-
-            Console.WriteLine("Tryck enter för att fortsätta");
+            Console.WriteLine("Tryck Enter för fortsätta !");
             Console.ReadLine();
         }
     }
