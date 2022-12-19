@@ -43,11 +43,23 @@ namespace HotelAppKyh.Controllers
                 ContinueMessage();
             }
             
-
+            
            
         }
 
-       
+        public void CanselReservation()
+        {
+            var read = new Read(myContext);
+            read.ListReservations();
+            Console.Write("Ange id för att avboka rum : ");
+            int resId = int.Parse(Console.ReadLine());
+            var delete = myContext.Reservations.First(x => x.Id == resId);
+
+            myContext.Reservations.Remove(delete);
+            myContext.SaveChanges();
+            ContinueMessage();
+
+        }
 
         public void DeleteRoom()
         {

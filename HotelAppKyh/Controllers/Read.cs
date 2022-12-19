@@ -1,4 +1,5 @@
 ﻿using HotelAppKyh.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,8 @@ namespace HotelAppKyh.Controllers
         public void ListGuest()
         {
             Console.Clear();
-            
+            Console.WriteLine("****************** All guests **********************");
+            Console.WriteLine();
             Console.WriteLine("Id\tFname\t\tLname\t\tPhone");
             Console.WriteLine("================================================");
             foreach (var guest in myContext.Guests.OrderBy(x => x.GuestId))
@@ -41,6 +43,8 @@ namespace HotelAppKyh.Controllers
         public void ListRoom()
         {
             Console.Clear();
+            Console.WriteLine("****************** All rooms **********************");
+            Console.WriteLine();
             Console.WriteLine("Id\tType\t\tSize\t\tBeds\t\tPrice");
             Console.WriteLine("==============================================================");
             foreach (var room in myContext.Rooms.OrderBy(x => x.RoomId))
@@ -55,5 +59,41 @@ namespace HotelAppKyh.Controllers
             Console.WriteLine("Tryck Enter för fortsätta !");
             Console.ReadLine();
         }
+
+        public void ListReservations()
+        {
+           
+
+            Console.Clear();
+            Console.WriteLine("********* All reservations ************");
+            Console.WriteLine();
+            Console.WriteLine("Id\tDateStart\t\tDateEnd\t\tRoomId\t\tGuestId");
+            Console.WriteLine("=====================================================================================================================");
+
+            foreach (var guest in myContext.Guests.ToList())
+            
+                
+            
+            foreach (var room in myContext.Rooms.ToList())
+
+            foreach (var booking in myContext.Reservations.Include(b => b.Room).Include(b => b.Guest)
+                         .Where(b => b.Room == room).Where(b => b.Guest  == guest))
+                
+            {
+                Console.WriteLine($"{booking.Id}\t{booking.DateStart.ToShortDateString()}\t\t{booking.DateEnd.ToShortDateString()}\t\t{booking.Room.RoomId}\t\t{booking.Guest.GuestId}");
+                
+            }
+
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("Tryck Enter för fortsätta !");
+            
+            Console.ReadLine();
+
+
+
+        }
+
+          
+        
     }
 }
