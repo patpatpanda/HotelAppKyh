@@ -61,7 +61,12 @@ public class Uppdate
     {
         var roomId = GetRoomId();
 
-
+        if (roomId.RoomType == "enkel")
+        {
+            Console.WriteLine("enkelrum kan inte lägga till säng");
+            Console.WriteLine("Tryck enter för att fortsätta");
+            Console.ReadLine();
+        }
         if (roomId.RoomType == "dubbel" && roomId.RoomSize >= 40 && roomId.RoomSize <= 50 &&
             roomId.NumberOfBeds == 2)
         {
@@ -107,7 +112,7 @@ public class Uppdate
             Console.WriteLine("Rummet har redan max antal sängar!");
         }
 
-        ContinueMessage();
+        
 
         myContext.SaveChanges();
     }
