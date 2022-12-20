@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace HotelAppKyh.Controllers
 {
-   public class Create 
+    public class Create
     {
         public AppDbContext myContext { get; set; }
+
         public Create(AppDbContext context)
         {
             myContext = context;
@@ -71,8 +72,8 @@ namespace HotelAppKyh.Controllers
             room.RoomSize = int.Parse(Console.ReadLine());
             Console.Write("Ange pris för rummet : ");
             room.RoomPrice = int.Parse(Console.ReadLine());
-            
-           
+
+
             myContext.Add(room);
             myContext.SaveChanges();
             ContinueMessage();
@@ -93,32 +94,34 @@ namespace HotelAppKyh.Controllers
         {
             var reservation = new Reservation();
             var guestReservation = new Guest();
-            
-            
-                var read = new Read(myContext);
-                read.ListGuest();
-                Console.Write("Ange id för gästen som ska stå på bokningen : ");
-                var guestId = int.Parse(Console.ReadLine());
-                var guest = myContext.Guests.First(x => x.GuestId == guestId);
-                reservation.Guest = guest;
-                
-               
-            
-            
+
+
+            var read = new Read(myContext);
+            read.ListGuest();
+            Console.Write("Ange id för gästen som ska stå på bokningen : ");
+            var guestId = int.Parse(Console.ReadLine());
+            var guest = myContext.Guests.First(x => x.GuestId == guestId);
+            reservation.Guest = guest;
+
+
+
+
 
             Console.Clear();
             Console.Write("Hur många nätter ? : ");
             int numberOfNightsStaying = int.Parse(Console.ReadLine());
 
-            reservation.DateStart = new DateTime();
+            reservation.DateStart = new DateTime(2022, 12, 01, 23, 59, 59);
             while (reservation.DateStart < DateTime.Now.Date)
             {
-                Console.Write(" Vilket datum vill du checka in ? (yyyy-mm-dd) : ");
-               reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
+                Console.WriteLine("\n From which date would you like your booking to start from? (yyyy-mm-dd)");
+                reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
             }
-            Console.Clear();
 
-
+            // set dateEnd
+            if (numberOfNightsStaying == 1) reservation.DateEnd = reservation.DateStart;
+            else if (numberOfNightsStaying > 1)
+                reservation.DateEnd = reservation.DateStart.AddDays(numberOfNightsStaying);
 
             List<DateTime> newBookingAllDates = new List<DateTime>();
             for (var dt = reservation.DateStart; dt <= reservation.DateEnd; dt = dt.AddDays(1))
@@ -126,36 +129,37 @@ namespace HotelAppKyh.Controllers
                 newBookingAllDates.Add(dt);
             }
 
+
             List<Room> availableCars = new List<Room>();
 
             foreach (var room in myContext.Rooms.ToList())
             {
-                bool carIsFree = true;
+                bool roomIsFree = true;
                 foreach (var booking in myContext.Reservations.Include(b => b.Room).Where(b => b.Room == room))
                 {
                     for (var dt = booking.DateStart; dt <= booking.DateEnd; dt = dt.AddDays(1))
                     {
                         if (newBookingAllDates.Contains(dt))
                         {
-                            carIsFree = false;
+                            roomIsFree = false;
 
                         }
 
                     }
 
-                    if (!carIsFree)
+                    if (!roomIsFree)
                     {
                         break;
                     }
                 }
 
 
-                if (carIsFree)
+                if (roomIsFree)
                 {
                     availableCars.Add(room);
                 }
 
-               
+
             }
 
 
@@ -167,18 +171,19 @@ namespace HotelAppKyh.Controllers
 
                 Console.WriteLine("Tryck enter för att fortsätta");
                 Console.ReadLine();
-                return; 
+                return;
             }
             else
             {
-                
+
                 Console.WriteLine("\n\n\n Lediga rum redo att bokas");
                 Console.WriteLine("\n Id\tTyp\t\tStorlek\t\tSängar\t\tPris");
                 Console.WriteLine(" ==================================================================");
 
                 foreach (var car in availableCars.OrderBy(r => r.RoomId))
                 {
-                    Console.WriteLine($" {car.RoomId}\t{car.RoomType}\t\t{car.RoomSize}\t\t{car.NumberOfBeds}\t\t{car.RoomPrice}");
+                    Console.WriteLine(
+                        $" {car.RoomId}\t{car.RoomType}\t\t{car.RoomSize}\t\t{car.NumberOfBeds}\t\t{car.RoomPrice}");
                     Console.WriteLine(" ------------------------------------------------------------------");
                 }
             }
@@ -199,13 +204,13 @@ namespace HotelAppKyh.Controllers
             Console.WriteLine(" Bookningen lyckades!");
             Console.WriteLine(" ==============================================================================");
             Console.WriteLine(" Start\t\tEnd\t\tNo. of days");
-            Console.WriteLine($" {reservation.DateStart.ToShortDateString()}\t{reservation.DateEnd.ToShortDateString()}\t{numberOfNightsStaying}");
+            Console.WriteLine(
+                $" {reservation.DateStart.ToShortDateString()}\t{reservation.DateEnd.ToShortDateString()}\t{numberOfNightsStaying}");
             Console.ForegroundColor = ConsoleColor.Gray;
 
             Console.WriteLine("\n Tryck enter för att fortsätta");
             Console.ReadLine();
 
         }
-
     }
 }
