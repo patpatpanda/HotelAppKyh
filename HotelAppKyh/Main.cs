@@ -12,13 +12,14 @@ public class Main
             var buildApp = new Builder();
             var myContext = buildApp.AppBuilder();
             var create = new Create(myContext);
-            var Read = new Read(myContext);
+            var read = new Read(myContext);
             var uppdate = new Uppdate(myContext);
             var delete = new Delete(myContext);
             var res = new Reservation(myContext);
-
-
             
+
+          
+           
 
             while (true)
             {
@@ -28,9 +29,9 @@ public class Main
 
                else if (inuput == 2) create.AddRoom();
 
-              else  if (inuput == 3) Read.ListGuest();
+              else  if (inuput == 3) read.ListGuest();
 
-               else if (inuput == 4) Read.ListRoom();
+               else if (inuput == 4) read.ListRoom();
 
               else  if (inuput == 5) uppdate.UppdateGuest();
                 
@@ -41,8 +42,9 @@ public class Main
              else   if(inuput == 8 ) delete.DeleteGuest();
                
                else if(inuput == 9 ) delete.DeleteRoom();
+
                 else if(inuput == 10) create.CreateReservation();
-              
+                else if (inuput == 11) delete.CanselReservation();
 
 
              else   if (inuput == 0)

@@ -93,25 +93,30 @@ namespace HotelAppKyh.Controllers
         {
             var reservation = new Reservation();
             var guestReservation = new Guest();
-            var read = new Read(myContext);
-            read.ListGuest();
-            Console.Write("Ange id för gästen som ska boka :");
-            var guestId = int.Parse(Console.ReadLine());
-            var guest = myContext.Guests.First(x => x.GuestId == guestId);
-            guestReservation.FirstName = guest.FirstName;
-            guestReservation.LastName = guest.LastName;
-            guestReservation.PhoneNumber = guest.PhoneNumber;
+            
+            
+                var read = new Read(myContext);
+                read.ListGuest();
+                Console.Write("Ange id för gästen som ska stå på bokningen : ");
+                var guestId = int.Parse(Console.ReadLine());
+                var guest = myContext.Guests.First(x => x.GuestId == guestId);
+                reservation.Guest = guest;
+                
+               
+            
+            
 
-            reservation.Guest = guestReservation;
-           
-
-
-            Console.Write("Hur många nätter ? :");
+            Console.Clear();
+            Console.Write("Hur många nätter ? : ");
             int numberOfNightsStaying = int.Parse(Console.ReadLine());
-            Console.Write("Vilket datum vill du checka in ? :");
-            reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
-            reservation.DateEnd = reservation.DateStart.AddDays(numberOfNightsStaying);
 
+            reservation.DateStart = new DateTime();
+            while (reservation.DateStart < DateTime.Now.Date)
+            {
+                Console.Write(" Vilket datum vill du checka in ? (yyyy-mm-dd) : ");
+               reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
+            }
+            Console.Clear();
 
 
 
