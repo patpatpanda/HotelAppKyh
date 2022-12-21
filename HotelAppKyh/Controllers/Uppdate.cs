@@ -21,7 +21,7 @@ public class Uppdate
         Console.Write("Check in datum (yyyy-mm-dd) : " );
         var checkInDate = Convert.ToDateTime(Console.ReadLine());
         var checkOutDate = checkInDate.AddDays(numberOfNightsStaying);
-      
+      reservationId.NewReservationProps(checkInDate,checkOutDate);
 
         myContext.SaveChanges();
         ContinueMessage();
@@ -82,6 +82,7 @@ public class Uppdate
         var newPrice = int.Parse(Console.ReadLine());
         roomId.NewRoomProps(newTypeOfRoom, newSizeOfRoom, newPrice);
         Console.WriteLine("Rummet har uppdaterats!");
+        myContext.SaveChanges();
        ContinueMessage();
     }
 
