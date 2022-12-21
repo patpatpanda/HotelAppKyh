@@ -91,20 +91,38 @@ public class Uppdate
 
         if (roomId.RoomType == "enkel")
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("enkelrum kan inte lägga till säng");
+            Console.WriteLine();
             Console.WriteLine("Tryck enter för att fortsätta");
             Console.ReadLine();
         }
-        if (roomId.RoomType == "dubbel" && roomId.RoomSize >= 40 && roomId.RoomSize <= 50 &&
+      else  if (roomId.RoomType == "dubbel" && roomId.RoomSize >= 40 && roomId.RoomSize <= 50 &&
             roomId.NumberOfBeds == 2)
         {
             Console.WriteLine("Det finns möjlighet att lägga till 1 säng!");
             Console.Write("Vill du göra det yes/no: ");
             var inuput = Console.ReadLine();
-            if (inuput == "yes") roomId.NumberOfBeds = 3;
+            if (inuput == "yes")
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                roomId.NumberOfBeds = 3;
+                Console.WriteLine("1 säng har lagts till");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+            }
 
 
-           else if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
+           else if (inuput == "no")
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Ingen säng har lagts till");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+            }
         }
 
         else if (roomId.RoomType == "dubbel" && roomId.RoomSize > 50 && roomId.NumberOfBeds == 2)
@@ -114,15 +132,25 @@ public class Uppdate
             var innput3 = Console.ReadLine();
             if (innput3 == "1")
             {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
                 roomId.NumberOfBeds = 3;
                 Console.WriteLine("1 säng har lagts till");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
             }
 
 
             else if (innput3 == "2")
             {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
                 roomId.NumberOfBeds = 4;
                 Console.WriteLine("2 sängar har lagts till");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+
+
             }
         }
         else if (roomId.RoomType == "dubbel" && roomId.RoomSize > 50 && roomId.NumberOfBeds == 3)
@@ -130,14 +158,25 @@ public class Uppdate
             Console.WriteLine("Det finns möjlighet att lägga till 1 säng");
             Console.Write("Vill du göra det yes/no: ");
             var inuput = Console.ReadLine();
-            if (inuput == "yes") roomId.NumberOfBeds = 4;
+            if (inuput == "yes")
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                roomId.NumberOfBeds = 4;
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+            }
 
 
-            if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
+          else  if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
         }
         else
         {
+            Console.Clear();
             Console.WriteLine("Rummet har redan max antal sängar!");
+            Console.WriteLine();
+            Console.WriteLine("Tryck enter för att fortsätta");
+            Console.ReadLine();
         }
 
         
