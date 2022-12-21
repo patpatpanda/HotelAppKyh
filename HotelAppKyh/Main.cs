@@ -33,11 +33,10 @@ public class Main
 
                else if (inuput == 4) read.ListRoom();
 
-              else  if (inuput == 5) uppdate.UppdateGuest();
+              else  if (inuput == 5) uppdate.UpdateGuest();
                 
-              else  if(inuput == 6) uppdate.UppdateRoom();
-
-              else  if(inuput == 7) uppdate.AddBed();
+              else  if(inuput == 6) uppdate.UpdateRoom();
+                else  if(inuput == 7) uppdate.AddBed();
                 
              else   if(inuput == 8 ) delete.DeleteGuest();
                
@@ -45,6 +44,10 @@ public class Main
 
                 else if(inuput == 10) create.CreateReservation();
                 else if (inuput == 11) delete.CanselReservation();
+                else if(inuput == 12) uppdate.UpdateReservation();
+                
+                    
+                
 
 
              else   if (inuput == 0)

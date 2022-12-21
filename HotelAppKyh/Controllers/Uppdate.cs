@@ -10,11 +10,39 @@ public class Uppdate
     }
 
     public AppDbContext myContext { get; set; }
+
+
+    public void UpdateReservation()
+    {
+        var reservationId = getReservationId();
+        Console.WriteLine();
+        Console.Write("Hur många nätter ? ");
+        int numberOfNightsStaying = int.Parse(Console.ReadLine());
+        Console.Write("Check in datum (yyyy-mm-dd) : " );
+        var checkInDate = Convert.ToDateTime(Console.ReadLine());
+        var checkOutDate = checkInDate.AddDays(numberOfNightsStaying);
+      
+
+        myContext.SaveChanges();
+        ContinueMessage();
+
+    }
+
+    private Reservation getReservationId()
+    {
+        var read = new Read(myContext);
+        read.ListReservations();
+        Console.Write("Ange id för den bokning du vill uppdtera : ");
+        var reservationId = int.Parse(Console.ReadLine());
+        var editReservation = myContext.Reservations.First(x => x.Id == reservationId);
+        return editReservation;
+
+    }
     
-    public void UppdateGuest()
+    public void UpdateGuest()
     {
         var guestId = GetGuestId();
-        Console.Clear();
+        
         Console.Write("Förnamn : ");
         var firstName = Console.ReadLine();
         Console.Write("Efternamn : ");
@@ -32,7 +60,7 @@ public class Uppdate
     {
         var read = new Read(myContext);
         read.ListGuest();
-        Console.Write("Ange id för gäst du vill uppdtera : ");
+        Console.Write("Ange id för gäst du vill uppdatera : ");
         
     
         var guestId = int.Parse(Console.ReadLine());
@@ -41,10 +69,10 @@ public class Uppdate
     }
 
 
-    public void UppdateRoom()
+    public void UpdateRoom()
     {
         var roomId = GetRoomId();
-        Console.Clear();
+        
         Console.Write("Ange typ av rum : ");
         
         var newTypeOfRoom = Console.ReadLine().ToLower();
