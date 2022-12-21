@@ -81,7 +81,7 @@ namespace HotelAppKyh.Data
                 myContext.Rooms.Add(new Room()
                 {
                     RoomType = "dubbel",
-                    RoomSize = 50,
+                    RoomSize = 70,
                     NumberOfBeds = 2,
                     RoomPrice = 1500
 
@@ -89,7 +89,7 @@ namespace HotelAppKyh.Data
                 myContext.Rooms.Add(new Room()
                 {
                     RoomType = "dubbel",
-                    RoomSize = 70,
+                    RoomSize = 50,
                     NumberOfBeds = 2,
                     RoomPrice = 2000
 
