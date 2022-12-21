@@ -114,7 +114,7 @@ namespace HotelAppKyh.Controllers
             reservation.DateStart = new DateTime(2022, 12, 01, 23, 59, 59);
             while (reservation.DateStart < DateTime.Now.Date)
             {
-                Console.WriteLine("\n From which date would you like your booking to start from? (yyyy-mm-dd)");
+                Console.Write("Vilket datum vill ni checka in ? : ");
                 reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
             }
 
@@ -203,7 +203,7 @@ namespace HotelAppKyh.Controllers
             Console.Clear();
             Console.WriteLine(" Bookningen lyckades!");
             Console.WriteLine(" ==============================================================================");
-            Console.WriteLine(" Start\t\tEnd\t\tNo. of days");
+            Console.WriteLine(" Start\t\tSlut\t\tAntal dagar");
             Console.WriteLine(
                 $" {reservation.DateStart.ToShortDateString()}\t{reservation.DateEnd.ToShortDateString()}\t{numberOfNightsStaying}");
             Console.ForegroundColor = ConsoleColor.Gray;

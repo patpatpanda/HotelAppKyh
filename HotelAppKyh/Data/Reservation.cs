@@ -30,7 +30,14 @@ namespace HotelAppKyh.Data
 
         public AppDbContext myContext { get; set; }
 
-        
+
+        public void NewReservationProps(DateTime _dateStart,DateTime _dateEnd)
+        {
+            
+            DateStart = _dateStart;
+            DateEnd = _dateEnd;
+            
+        }
 
         
     }
