@@ -180,10 +180,10 @@ namespace HotelAppKyh.Controllers
                 Console.WriteLine("\n Id\tTyp\t\tStorlek\t\tSängar\t\tPris");
                 Console.WriteLine(" ==================================================================");
 
-                foreach (var car in availableCars.OrderBy(r => r.RoomId))
+                foreach (var room in availableCars.OrderBy(r => r.RoomId))
                 {
                     Console.WriteLine(
-                        $" {car.RoomId}\t{car.RoomType}\t\t{car.RoomSize}\t\t{car.NumberOfBeds}\t\t{car.RoomPrice}");
+                        $" {room.RoomId}\t{room.RoomType}\t\t{room.RoomSize}\t\t{room.NumberOfBeds}\t\t{room.RoomPrice}");
                     Console.WriteLine(" ------------------------------------------------------------------");
                 }
             }
