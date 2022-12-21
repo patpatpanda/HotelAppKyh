@@ -108,13 +108,13 @@ namespace HotelAppKyh.Controllers
 
 
             Console.Clear();
-            Console.Write("Hur många nätter ? : ");
+            Console.Write("Hur många nätter? : ");
             int numberOfNightsStaying = int.Parse(Console.ReadLine());
 
             reservation.DateStart = new DateTime(2022, 12, 01, 23, 59, 59);
             while (reservation.DateStart < DateTime.Now.Date)
             {
-                Console.Write("Vilket datum vill ni checka in ? : ");
+                Console.WriteLine("CheckIn datum (yyyy-mm-dd) ");
                 reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
             }
 

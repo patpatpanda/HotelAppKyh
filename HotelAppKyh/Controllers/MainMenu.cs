@@ -18,7 +18,8 @@ public static class MainMenu
         Console.WriteLine("                             |    ****         8:  Radera gäst        ****       |");
         Console.WriteLine("                             |    ****         9:  Radera rum         ****       |"); 
         Console.WriteLine("                             |    ****         10: Bokning            ****       |");
-        Console.WriteLine("                             |    ****         11: Avboka           ****         |");
+        Console.WriteLine("                             |    ****         11: Avboka             ****       |");
+        Console.WriteLine("                             |    ****         12: Uppdatera bokning  ****        |");
 
         Console.WriteLine("                             |    ****         0:  Avsluta            ****       |");
         Console.WriteLine("                             ------------------------------------------------------");
