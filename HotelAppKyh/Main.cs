@@ -15,9 +15,9 @@ public class Main
             var read = new Read(myContext);
             var uppdate = new Uppdate(myContext);
             var delete = new Delete(myContext);
-            var res = new Reservation(myContext);
             
-
+            
+            ////
           
            
 
