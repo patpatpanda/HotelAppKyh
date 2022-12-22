@@ -56,7 +56,7 @@ public class Uppdate
         ContinueMessage();
     }
 
-    public Guest GetGuestId()
+    private Guest GetGuestId()
     {
         var read = new Read(myContext);
         read.ListGuest();

@@ -88,8 +88,8 @@ public class Create
         var reservation = new Reservation();
        // var guestReservation = new Guest();
 
-        var read = new Uppdate(myContext);
-        var guestId = read.GetGuestId();
+        
+        var guestId = GetGuest();
         reservation.Guest = guestId;
 
         Console.Clear();
@@ -214,5 +214,17 @@ public class Create
             Console.WriteLine("CheckIn datum (yyyy-mm-dd) ");
             reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
         }
+    }
+    public Guest GetGuest()
+    {
+        Console.Clear();
+        var read = new Read(myContext);
+        read.ListGuest();
+        Console.Write("Ange (Id) För gäst som ska stå på bokningen : ");
+
+
+        var guestId = int.Parse(Console.ReadLine());
+        var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
+        return editGuest;
     }
 }
