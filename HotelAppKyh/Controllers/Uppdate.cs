@@ -60,7 +60,7 @@ public class Uppdate
     {
         var read = new Read(myContext);
         read.ListGuest();
-        Console.Write("Ange (Id) : ");
+        Console.Write("\nAnge (Id) för gäst du vill uppdatera : ");
         
     
         var guestId = int.Parse(Console.ReadLine());
@@ -208,7 +208,7 @@ public class Uppdate
         var read = new Read(myContext);
         read.ListRoom();
 
-        Console.Write("Ange id för rum du vill uppdatera : ");
+        Console.Write("\nAnge id för rum du vill uppdatera : ");
         var roomId = int.Parse(Console.ReadLine());
 
         var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);

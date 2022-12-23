@@ -34,10 +34,10 @@ namespace HotelAppKyh.Controllers
 
             }
 
-            Console.WriteLine("--------------------------------------------------");
+            //Console.WriteLine("--------------------------------------------------");
 
-            Console.WriteLine("Tryck Enter för fortsätta !");
-            Console.ReadLine();
+            //Console.WriteLine("Tryck Enter för fortsätta !");
+            //Console.ReadLine();
         }
 
         public void ListRoom()
@@ -55,9 +55,9 @@ namespace HotelAppKyh.Controllers
 
             }
 
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.WriteLine("Tryck Enter för fortsätta !");
-            Console.ReadLine();
+            ////Console.WriteLine("---------------------------------------------------------------");
+            ////Console.WriteLine("Tryck Enter för fortsätta !");
+            ////Console.ReadLine();
         }
 
         public void ListReservations()
@@ -84,10 +84,10 @@ namespace HotelAppKyh.Controllers
                 
             }
 
-            Console.WriteLine("------------------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("Tryck Enter för fortsätta !");
+            //Console.WriteLine("------------------------------------------------------------------------------------------------------------------");
+            //Console.WriteLine("Tryck Enter för fortsätta !");
             
-            Console.ReadLine();
+            //Console.ReadLine();
 
 
 

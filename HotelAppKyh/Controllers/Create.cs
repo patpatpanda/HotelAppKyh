@@ -16,7 +16,7 @@ public class Create
     {
         Console.Clear();
         var guest = new Guest();
-        Console.Write("Ange förstanamn : ");
+        Console.Write("Ange förnamn : ");
         guest.FirstName = Console.ReadLine();
         Console.Write("Ange efternamn : ");
         guest.LastName = Console.ReadLine();
@@ -220,7 +220,7 @@ public class Create
         Console.Clear();
         var read = new Read(myContext);
         read.ListGuest();
-        Console.Write("Ange (Id) För gäst som ska stå på bokningen : ");
+        Console.Write("\nAnge (Id) För gäst som ska stå på bokningen : ");
 
 
         var guestId = int.Parse(Console.ReadLine());
