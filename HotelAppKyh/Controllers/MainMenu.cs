@@ -20,6 +20,7 @@ public static class MainMenu
         Console.WriteLine("                             |    ****         10: Bokning            ****       |");
         Console.WriteLine("                             |    ****         11: Avboka             ****       |");
         Console.WriteLine("                             |    ****         12: Uppdatera bokning  ****       |");
+        Console.WriteLine("                             |    ****         13: Ta bort säng       ****       |");
         Console.WriteLine();
         Console.WriteLine("                             |    ****         0:  Avsluta            ****       |");
         Console.WriteLine("                             ------------------------------------------------------");

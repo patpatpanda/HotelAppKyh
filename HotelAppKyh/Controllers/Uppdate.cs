@@ -14,9 +14,10 @@ public class Uppdate
 
     public void UpdateReservation()
     {
+        
         var reservationId = getReservationId();
-        Console.WriteLine();
-        Console.Write("Hur många nätter ? ");
+        
+        Console.Write("\n Hur många nätter ? ");
         int numberOfNightsStaying = int.Parse(Console.ReadLine());
         Console.Write("Check in datum (yyyy-mm-dd) : " );
         var checkInDate = Convert.ToDateTime(Console.ReadLine());
@@ -32,6 +33,7 @@ public class Uppdate
     {
         var read = new Read(myContext);
         read.ListReservations();
+        Console.WriteLine();
         Console.Write("Ange id för den bokning du vill uppdtera : ");
         var reservationId = int.Parse(Console.ReadLine());
         var editReservation = myContext.Reservations.First(x => x.Id == reservationId);
@@ -201,6 +203,16 @@ public class Uppdate
         Console.WriteLine();
         Console.WriteLine("Tryck enter för att fortsätta");
         Console.ReadLine();
+    }
+
+    public  void RemoveBed()
+    {
+        var roomId = GetRoomId();
+        Console.WriteLine("Hur många sängar vill du ta bort?");
+        int input = int.Parse(Console.ReadLine());
+        roomId.NumberOfBeds -= input;
+        myContext.SaveChanges();
+        ContinueMessage();
     }
 
     private Room GetRoomId()

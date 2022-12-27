@@ -61,6 +61,7 @@ public class Main
                 else if(inuput == 10) create.CreateReservation();
                 else if (inuput == 11) delete.CanselReservation();
                 else if(inuput == 12) uppdate.UpdateReservation();
+                else if(inuput == 13) uppdate.RemoveBed();
                 
                     
                 

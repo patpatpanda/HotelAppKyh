@@ -86,7 +86,7 @@ public class Create
     public void CreateReservation()
     {
         var reservation = new Reservation();
-       // var guestReservation = new Guest();
+       
 
         
         var guestId = GetGuest();
@@ -110,6 +110,7 @@ public class Create
 
 
         ChooseRoom(reservation);
+        
 
         BookingSuccesMessage(reservation, numberOfNightsStaying);
     }
