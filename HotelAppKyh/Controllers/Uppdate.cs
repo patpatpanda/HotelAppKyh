@@ -198,21 +198,36 @@ public class Uppdate
     private static void AddBedNotPossibleMessage()
     {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Red;
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("enkelrum kan inte lägga till säng");
-        Console.WriteLine();
-        Console.WriteLine("Tryck enter för att fortsätta");
+        
+        Console.WriteLine("\n Tryck enter för att fortsätta");
         Console.ReadLine();
     }
 
     public  void RemoveBed()
     {
         var roomId = GetRoomId();
-        Console.WriteLine("Hur många sängar vill du ta bort?");
-        int input = int.Parse(Console.ReadLine());
-        roomId.NumberOfBeds -= input;
-        myContext.SaveChanges();
-        ContinueMessage();
+        if (roomId.NumberOfBeds == 3 || roomId.NumberOfBeds == 4)
+        {
+            Console.WriteLine("1 säng har tagits bort från rummet ! ");
+            Console.WriteLine("\nTryck enter för att fortsätta");
+            Console.ReadLine();
+
+            roomId.NumberOfBeds -= -1;
+            myContext.SaveChanges();
+            
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Detta rum får ej ha färre sängar");
+            Console.WriteLine("\nTryck enter för att fortsätta");
+            Console.ReadLine();
+
+        }
+       
+       
     }
 
     private Room GetRoomId()
