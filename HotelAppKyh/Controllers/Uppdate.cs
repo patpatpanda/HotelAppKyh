@@ -214,7 +214,7 @@ public class Uppdate
             Console.WriteLine("\nTryck enter för att fortsätta");
             Console.ReadLine();
 
-            roomId.NumberOfBeds -= -1;
+            roomId.NumberOfBeds += -1;
             myContext.SaveChanges();
             
         }
