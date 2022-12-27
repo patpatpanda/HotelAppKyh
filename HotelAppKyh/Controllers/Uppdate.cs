@@ -14,9 +14,10 @@ public class Uppdate
 
     public void UpdateReservation()
     {
+        
         var reservationId = getReservationId();
-        Console.WriteLine();
-        Console.Write("Hur många nätter ? ");
+        
+        Console.Write("\n Hur många nätter ? ");
         int numberOfNightsStaying = int.Parse(Console.ReadLine());
         Console.Write("Check in datum (yyyy-mm-dd) : " );
         var checkInDate = Convert.ToDateTime(Console.ReadLine());
@@ -32,6 +33,7 @@ public class Uppdate
     {
         var read = new Read(myContext);
         read.ListReservations();
+        Console.WriteLine();
         Console.Write("Ange id för den bokning du vill uppdtera : ");
         var reservationId = int.Parse(Console.ReadLine());
         var editReservation = myContext.Reservations.First(x => x.Id == reservationId);
@@ -56,11 +58,11 @@ public class Uppdate
         ContinueMessage();
     }
 
-    public Guest GetGuestId()
+    private Guest GetGuestId()
     {
         var read = new Read(myContext);
         read.ListGuest();
-        Console.Write("Ange (Id) : ");
+        Console.Write("\nAnge (Id) för gäst du vill uppdatera : ");
         
     
         var guestId = int.Parse(Console.ReadLine());
@@ -203,12 +205,22 @@ public class Uppdate
         Console.ReadLine();
     }
 
+    public  void RemoveBed()
+    {
+        var roomId = GetRoomId();
+        Console.WriteLine("Hur många sängar vill du ta bort?");
+        int input = int.Parse(Console.ReadLine());
+        roomId.NumberOfBeds -= input;
+        myContext.SaveChanges();
+        ContinueMessage();
+    }
+
     private Room GetRoomId()
     {
         var read = new Read(myContext);
         read.ListRoom();
 
-        Console.Write("Ange id för rum du vill uppdatera : ");
+        Console.Write("\nAnge id för rum du vill uppdatera : ");
         var roomId = int.Parse(Console.ReadLine());
 
         var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);

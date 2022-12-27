@@ -16,7 +16,7 @@ public class Create
     {
         Console.Clear();
         var guest = new Guest();
-        Console.Write("Ange förstanamn : ");
+        Console.Write("Ange förnamn : ");
         guest.FirstName = Console.ReadLine();
         Console.Write("Ange efternamn : ");
         guest.LastName = Console.ReadLine();
@@ -86,10 +86,10 @@ public class Create
     public void CreateReservation()
     {
         var reservation = new Reservation();
-       // var guestReservation = new Guest();
+       
 
-        var read = new Uppdate(myContext);
-        var guestId = read.GetGuestId();
+        
+        var guestId = GetGuest();
         reservation.Guest = guestId;
 
         Console.Clear();
@@ -110,6 +110,7 @@ public class Create
 
 
         ChooseRoom(reservation);
+        
 
         BookingSuccesMessage(reservation, numberOfNightsStaying);
     }
@@ -214,5 +215,17 @@ public class Create
             Console.WriteLine("CheckIn datum (yyyy-mm-dd) ");
             reservation.DateStart = Convert.ToDateTime(Console.ReadLine());
         }
+    }
+    public Guest GetGuest()
+    {
+        Console.Clear();
+        var read = new Read(myContext);
+        read.ListGuest();
+        Console.Write("\nAnge (Id) För gäst som ska stå på bokningen : ");
+
+
+        var guestId = int.Parse(Console.ReadLine());
+        var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
+        return editGuest;
     }
 }

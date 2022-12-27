@@ -13,6 +13,7 @@ public class Main
             var myContext = buildApp.AppBuilder();
             var create = new Create(myContext);
             var read = new Read(myContext);
+            
             var uppdate = new Uppdate(myContext);
             var delete = new Delete(myContext);
             
@@ -29,11 +30,26 @@ public class Main
 
                else if (inuput == 2) create.AddRoom();
 
-              else  if (inuput == 3) read.ListGuest();
+              else if (inuput == 3)
+                {
+                    read.ListGuest();
+                    Console.WriteLine("\nTryck enter för att fortsätta");
+                    Console.ReadLine();
+                   
+                }
+                
+                
 
-               else if (inuput == 4) read.ListRoom();
+               else if (inuput == 4)
+                {
+                    read.ListRoom();
+                    Console.WriteLine("\nTryck enter för att fortsätta");
+                    Console.ReadLine();
 
-              else  if (inuput == 5) uppdate.UpdateGuest();
+                }
+
+
+                else  if (inuput == 5) uppdate.UpdateGuest();
                 
               else  if(inuput == 6) uppdate.UpdateRoom();
                 else  if(inuput == 7) uppdate.AddBed();
@@ -45,6 +61,7 @@ public class Main
                 else if(inuput == 10) create.CreateReservation();
                 else if (inuput == 11) delete.CanselReservation();
                 else if(inuput == 12) uppdate.UpdateReservation();
+                else if(inuput == 13) uppdate.RemoveBed();
                 
                     
                 

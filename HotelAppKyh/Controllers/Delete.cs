@@ -21,10 +21,12 @@ namespace HotelAppKyh.Controllers
         
         public void DeleteGuest()
         {
+
             var read = new Read(myContext);
             
+            
             read.ListGuest();
-            Console.Write("Ange id för gäst du vill radera: ");
+            Console.Write("\nAnge id för gäst du vill radera: ");
             int guestId = int.Parse(Console.ReadLine());
             var delete = myContext.Guests.First(x => x.GuestId == guestId);
             var checkFor = myContext.Reservations.Any(x => x.Guest == delete);
@@ -51,7 +53,7 @@ namespace HotelAppKyh.Controllers
         {
             var read = new Read(myContext);
             read.ListReservations();
-            Console.Write("Ange id för att avboka rum : ");
+            Console.Write("\nAnge id för att avboka rum : ");
             int resId = int.Parse(Console.ReadLine());
             var delete = myContext.Reservations.First(x => x.Id == resId);
 
@@ -65,7 +67,7 @@ namespace HotelAppKyh.Controllers
         {
             var read = new Read(myContext);
             read.ListRoom();
-            Console.Write("Ange id för rum du vill radera: ");
+            Console.Write("\nAnge id för rum du vill radera: ");
             int roomId = int.Parse(Console.ReadLine());
             var delete = myContext.Rooms.First(x => x.RoomId == roomId);
             
