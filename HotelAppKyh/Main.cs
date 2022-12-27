@@ -90,7 +90,12 @@ public class Main
                 {
                     uppdate.RemoveBed();
                 }
-
+                else if (inuput == 14)
+                {
+                    read.ListReservations();
+                    Console.WriteLine("\nTryck enter för att fortsätta");
+                    Console.ReadLine();
+                }
 
                 else if (inuput == 0)
                 {
