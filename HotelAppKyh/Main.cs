@@ -6,8 +6,8 @@ public class Main
 {
     public void run()
     {
-        try
-        {
+        
+        
             var buildApp = new Builder();
             var myContext = buildApp.AppBuilder();
             var create = new Create(myContext);
@@ -112,10 +112,7 @@ public class Main
                 }
                 }
                 
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
+        
+        
     }
 }
