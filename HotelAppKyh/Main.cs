@@ -107,7 +107,7 @@ public class Main
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    Console.WriteLine("Tryck enter för att fortsäta");
+                    Console.WriteLine("\nTryck enter för att fortsäta");
                     Console.ReadLine();
                 }
                 }
