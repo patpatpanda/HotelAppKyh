@@ -21,6 +21,7 @@ public static class MainMenu
         Console.WriteLine("                             |    ****         11: Avboka             ****       |");
         Console.WriteLine("                             |    ****         12: Uppdatera bokning  ****       |");
         Console.WriteLine("                             |    ****         13: Ta bort säng       ****       |");
+        Console.WriteLine("                             |    ****         14: Lista bokningar    ****       |");
         Console.WriteLine();
         Console.WriteLine("                             |    ****         0:  Avsluta            ****       |");
         Console.WriteLine("                             ------------------------------------------------------");
