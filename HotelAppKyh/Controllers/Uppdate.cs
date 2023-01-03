@@ -14,19 +14,17 @@ public class Uppdate
 
     public void UpdateReservation()
     {
-        
         var reservationId = getReservationId();
-        
+
         Console.Write("\n Hur många nätter ? ");
-        int numberOfNightsStaying = int.Parse(Console.ReadLine());
-        Console.Write("Check in datum (yyyy-mm-dd) : " );
+        var numberOfNightsStaying = int.Parse(Console.ReadLine());
+        Console.Write("Check in datum (yyyy-mm-dd) : ");
         var checkInDate = Convert.ToDateTime(Console.ReadLine());
         var checkOutDate = checkInDate.AddDays(numberOfNightsStaying);
-      reservationId.NewReservationProps(checkInDate,checkOutDate);
+        reservationId.NewReservationProps(checkInDate, checkOutDate);
 
         myContext.SaveChanges();
         ContinueMessage();
-
     }
 
     private Reservation getReservationId()
@@ -38,13 +36,12 @@ public class Uppdate
         var reservationId = int.Parse(Console.ReadLine());
         var editReservation = myContext.Reservations.First(x => x.Id == reservationId);
         return editReservation;
-
     }
-    
+
     public void UpdateGuest()
     {
         var guestId = GetGuestId();
-        
+
         Console.Write("Förnamn : ");
         var firstName = Console.ReadLine();
         Console.Write("Efternamn : ");
@@ -52,8 +49,8 @@ public class Uppdate
         Console.Write("Telefonummer : ");
         var nummer = Console.ReadLine();
         guestId.NewGuestProps(firstName, lastName, nummer);
-        
-        
+
+
         myContext.SaveChanges();
         ContinueMessage();
     }
@@ -63,8 +60,8 @@ public class Uppdate
         var read = new Read(myContext);
         read.ListGuest();
         Console.Write("\nAnge (Id) för gäst du vill uppdatera : ");
-        
-    
+
+
         var guestId = int.Parse(Console.ReadLine());
         var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
         return editGuest;
@@ -74,18 +71,18 @@ public class Uppdate
     public void UpdateRoom()
     {
         var roomId = GetRoomId();
-        
+
         Console.Write("Ange typ av rum : ");
-        
+
         var newTypeOfRoom = Console.ReadLine().ToLower();
         Console.Write("Ange storlek :");
         var newSizeOfRoom = int.Parse(Console.ReadLine());
         Console.Write("Pris : ");
         var newPrice = int.Parse(Console.ReadLine());
         roomId.NewRoomProps(newTypeOfRoom, newSizeOfRoom, newPrice);
-        
+
         myContext.SaveChanges();
-       ContinueMessage();
+        ContinueMessage();
     }
 
     public void AddBed()
@@ -96,8 +93,8 @@ public class Uppdate
         {
             AddBedNotPossibleMessage();
         }
-      else  if (roomId.RoomType == "dubbel" && roomId.RoomSize >= 40 && roomId.RoomSize <= 50 &&
-            roomId.NumberOfBeds == 2)
+        else if (roomId.RoomType == "dubbel" && roomId.RoomSize >= 40 && roomId.RoomSize <= 50 &&
+                 roomId.NumberOfBeds == 2)
         {
             AddOneBedPossibleMessage(roomId);
         }
@@ -119,7 +116,6 @@ public class Uppdate
             Console.ReadLine();
         }
 
-        
 
         myContext.SaveChanges();
     }
@@ -143,26 +139,20 @@ public class Uppdate
             }
 
 
-            else if (inuput == "no")
+            if (inuput == "no")
             {
                 Console.WriteLine("Ingen säng har lagts till");
                 break;
             }
 
-            
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Du kan endast svara yes eller no..");
-            }
 
+            Console.Clear();
+            Console.WriteLine("Du kan endast svara yes eller no..");
         }
-        
     }
 
     private static void AddTwoBedsPossibleMessage(Room roomId)
     {
-
         while (true)
         {
             Console.WriteLine("Det finns möjlighet att lägga till 1 eller 2 sängar");
@@ -177,11 +167,10 @@ public class Uppdate
                 Console.WriteLine("Tryck enter för att fortsätta");
                 Console.ReadLine();
                 break;
-
             }
 
 
-            else if (innput3 == "2")
+            if (innput3 == "2")
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -191,18 +180,10 @@ public class Uppdate
                 Console.ReadLine();
                 break;
             }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Du kan endast välja mellan 1 eller 2");
 
-            }
+            Console.Clear();
+            Console.WriteLine("Du kan endast välja mellan 1 eller 2");
         }
-                
-               
-            
-        
-        
     }
 
     private static void AddOneBedPossibleMessage(Room roomId)
@@ -224,10 +205,8 @@ public class Uppdate
             }
 
 
-            else if (inuput == "no")
+            if (inuput == "no")
             {
-
-
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Ingen säng har lagts till");
@@ -235,26 +214,24 @@ public class Uppdate
                 Console.ReadLine();
                 break;
             }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("Du kan endast svara yes eller no...");
-            }
+
+            Console.Clear();
+            Console.WriteLine("Du kan endast svara yes eller no...");
         }
     }
-       
+
 
     private static void AddBedNotPossibleMessage()
     {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.WriteLine("enkelrum kan inte lägga till säng");
-        
+
         Console.WriteLine("\n Tryck enter för att fortsätta");
         Console.ReadLine();
     }
 
-    public  void RemoveBed()
+    public void RemoveBed()
     {
         var roomId = GetRoomId();
         if (roomId.NumberOfBeds == 3 || roomId.NumberOfBeds == 4)
@@ -265,7 +242,6 @@ public class Uppdate
 
             roomId.NumberOfBeds += -1;
             myContext.SaveChanges();
-            
         }
         else
         {
@@ -273,16 +249,12 @@ public class Uppdate
             Console.WriteLine("Detta rum får ej ha färre sängar");
             Console.WriteLine("\nTryck enter för att fortsätta");
             Console.ReadLine();
-
         }
-       
-       
     }
 
     private Room GetRoomId()
     {
         while (true)
-        {
             try
             {
                 var read = new Read(myContext);
@@ -303,9 +275,8 @@ public class Uppdate
                 Console.WriteLine("\nTryck enter för att fortsätta");
                 Console.ReadLine();
             }
-        }
-        
     }
+
     private static void ContinueMessage()
     {
         Console.Clear();
@@ -316,8 +287,4 @@ public class Uppdate
         Console.ReadLine();
         Console.ResetColor();
     }
-
-   
 }
-
-   

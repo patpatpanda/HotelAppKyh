@@ -33,7 +33,7 @@ namespace HotelAppKyh.Controllers
             if (checkFor)
             {
                 Console.Clear();
-                Console.WriteLine("Gäst kan ej tas bort !");
+                Console.WriteLine("Gäst kan ej tas bort pga att den har en aktiv boking !");
                 Console.WriteLine();
                 Console.WriteLine("Tryck enter för att fortsätta ");
                 Console.ReadLine();
