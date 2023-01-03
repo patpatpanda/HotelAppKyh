@@ -50,7 +50,7 @@ public class Create
                 room.NumberOfBeds = 2;
                 break;
             }
-
+            
             if (room.RoomType != "dubbel" || room.RoomType != "enkel")
             {
                 Console.Clear();

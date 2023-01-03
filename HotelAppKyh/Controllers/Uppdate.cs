@@ -83,7 +83,7 @@ public class Uppdate
         Console.Write("Pris : ");
         var newPrice = int.Parse(Console.ReadLine());
         roomId.NewRoomProps(newTypeOfRoom, newSizeOfRoom, newPrice);
-        Console.WriteLine("Rummet har uppdaterats!");
+        
         myContext.SaveChanges();
        ContinueMessage();
     }
@@ -126,74 +126,123 @@ public class Uppdate
 
     private static void AddTotalFourBedsPossibleMessage(Room roomId)
     {
-        Console.WriteLine("Det finns möjlighet att lägga till 1 säng");
-        Console.Write("Vill du göra det yes/no: ");
-        var inuput = Console.ReadLine();
-        if (inuput == "yes")
+        while (true)
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            roomId.NumberOfBeds = 4;
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
+            Console.WriteLine("Det finns möjlighet att lägga till 1 säng");
+            Console.Write("Vill du göra det yes/no: ");
+            var inuput = Console.ReadLine();
+            if (inuput == "yes")
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                roomId.NumberOfBeds = 4;
+                Console.WriteLine("1 säng har lag");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+                break;
+            }
+
+
+            else if (inuput == "no")
+            {
+                Console.WriteLine("Ingen säng har lagts till");
+                break;
+            }
+
+            
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Du kan endast svara yes eller no..");
+            }
+
         }
-
-
-        else if (inuput == "no") Console.WriteLine("Ingen säng har lagts till");
+        
     }
 
     private static void AddTwoBedsPossibleMessage(Room roomId)
     {
-        Console.WriteLine("Det finns möjlighet att lägga till 1 eller 2 sängar");
-        Console.Write("Hur många vill du lägga till: ");
-        var innput3 = Console.ReadLine();
-        if (innput3 == "1")
+
+        while (true)
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            roomId.NumberOfBeds = 3;
-            Console.WriteLine("1 säng har lagts till");
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
-        }
+            Console.WriteLine("Det finns möjlighet att lägga till 1 eller 2 sängar");
+            Console.Write("Hur många vill du lägga till: ");
+            var innput3 = Console.ReadLine();
+            if (innput3 == "1")
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                roomId.NumberOfBeds = 3;
+                Console.WriteLine("1 säng har lagts till");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+                break;
+
+            }
 
 
-        else if (innput3 == "2")
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            roomId.NumberOfBeds = 4;
-            Console.WriteLine("2 sängar har lagts till");
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
+            else if (innput3 == "2")
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                roomId.NumberOfBeds = 4;
+                Console.WriteLine("2 sängar har lagts till");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+                break;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Du kan endast välja mellan 1 eller 2");
+
+            }
         }
+                
+               
+            
+        
+        
     }
 
     private static void AddOneBedPossibleMessage(Room roomId)
     {
-        Console.WriteLine("Det finns möjlighet att lägga till 1 säng!");
-        Console.Write("Vill du göra det yes/no: ");
-        var inuput = Console.ReadLine();
-        if (inuput == "yes")
+        while (true)
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            roomId.NumberOfBeds = 3;
-            Console.WriteLine("1 säng har lagts till");
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
-        }
+            Console.WriteLine("Det finns möjlighet att lägga till 1 säng!");
+            Console.Write("Vill du göra det yes/no: ");
+            var inuput = Console.ReadLine();
+            if (inuput == "yes")
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                roomId.NumberOfBeds = 3;
+                Console.WriteLine("1 säng har lagts till");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+                break;
+            }
 
 
-        else if (inuput == "no")
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Ingen säng har lagts till");
-            Console.WriteLine("Tryck enter för att fortsätta");
-            Console.ReadLine();
+            else if (inuput == "no")
+            {
+
+
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Ingen säng har lagts till");
+                Console.WriteLine("Tryck enter för att fortsätta");
+                Console.ReadLine();
+                break;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Du kan endast svara yes eller no...");
+            }
         }
     }
+       
 
     private static void AddBedNotPossibleMessage()
     {
@@ -232,15 +281,30 @@ public class Uppdate
 
     private Room GetRoomId()
     {
-        var read = new Read(myContext);
-        read.ListRoom();
+        while (true)
+        {
+            try
+            {
+                var read = new Read(myContext);
+                read.ListRoom();
 
-        Console.Write("\nAnge id för rum du vill uppdatera : ");
-        var roomId = int.Parse(Console.ReadLine());
+                Console.Write("\nAnge id för rum du vill uppdatera : ");
+                var roomId = int.Parse(Console.ReadLine());
 
-        var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
-        Console.Clear();
-        return editRoom;
+                var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
+                Console.Clear();
+                return editRoom;
+                break;
+            }
+            catch (Exception e)
+            {
+                Console.Clear();
+                Console.WriteLine(e);
+                Console.WriteLine("\nTryck enter för att fortsätta");
+                Console.ReadLine();
+            }
+        }
+        
     }
     private static void ContinueMessage()
     {
@@ -252,6 +316,8 @@ public class Uppdate
         Console.ReadLine();
         Console.ResetColor();
     }
+
+   
 }
 
    

@@ -76,7 +76,7 @@ namespace HotelAppKyh.Controllers
                 Console.WriteLine($"{booking.Id}\t{booking.DateStart.ToShortDateString()}\t\t{booking.DateEnd.ToShortDateString()}\t\t{booking.Room.RoomId}\t\t{booking.Guest.GuestId}");
                 
             }
-
+            
 
 
 
