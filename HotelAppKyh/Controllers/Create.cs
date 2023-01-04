@@ -54,7 +54,7 @@ public class Create
             if (room.RoomType != "dubbel" || room.RoomType != "enkel")
             {
                 Console.Clear();
-                Console.WriteLine("Felaktigt val");
+                Console.WriteLine("Du kan endast ange (enkel) eller (dubbel)");
                 Console.Write("Ange typ av rum : ");
 
                 room.RoomType = Console.ReadLine().ToLower();
@@ -72,16 +72,7 @@ public class Create
         ContinueMessage();
     }
 
-    private static void ContinueMessage()
-    {
-        Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("Lyckades !");
-        Console.WriteLine();
-        Console.WriteLine("Tryck enter för att fortsätta");
-        Console.ReadLine();
-        Console.ResetColor();
-    }
+   
 
     public void CreateReservation()
     {
@@ -105,11 +96,24 @@ public class Create
 
         var availableRoms = GetAvailableRooms(newBookingAllDates);
 
+        while (true)
+        {
+            if (ShowAvailableRooms(availableRoms)) return;
 
-        if (ShowAvailableRooms(availableRoms)) return;
 
-
-        ChooseRoom(reservation);
+            try
+            {
+                ChooseRoom(reservation);
+                break;
+            }
+            catch (Exception e)
+            {
+                ErrorMessage();
+            }
+        }
+        
+        
+        
         
 
         BookingSuccesMessage(reservation, numberOfNightsStaying);
@@ -132,14 +136,16 @@ public class Create
 
     private void ChooseRoom(Reservation reservation)
     {
-        Console.WriteLine("\n Välja mellan dessa rum (ange id)");
-        var roomId = int.Parse(Console.ReadLine());
-        reservation.Room = myContext.Rooms
-            .Where(c => c.RoomId == roomId)
-            .FirstOrDefault();
+        
+               Console.WriteLine("\n Välja mellan dessa rum (ange Id)");
+                var roomId = int.Parse(Console.ReadLine());
+                reservation.Room = myContext.Rooms
+                    .Where(c => c.RoomId == roomId)
+                    .FirstOrDefault();
 
-        myContext.Add(reservation);
-        myContext.SaveChanges();
+                myContext.Add(reservation);
+                myContext.SaveChanges();
+                
     }
 
     private static bool ShowAvailableRooms(List<Room> availableRoms)
@@ -218,14 +224,47 @@ public class Create
     }
     public Guest GetGuest()
     {
+        while (true)
+        {
+            try
+            {
+                Console.Clear();
+                var read = new Read(myContext);
+                read.ListGuest();
+                Console.Write("\nAnge (Id) För gäst som ska stå på bokningen : ");
+
+
+                var guestId = int.Parse(Console.ReadLine());
+                var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
+                return editGuest;
+
+            }
+            catch
+            {
+                ErrorMessage();
+            }
+        }
+      
+    }
+    private static void ErrorMessage()
+    {
+
         Console.Clear();
-        var read = new Read(myContext);
-        read.ListGuest();
-        Console.Write("\nAnge (Id) För gäst som ska stå på bokningen : ");
 
+        Console.WriteLine("\nDu kan endast ange ett befintligt (Id)");
+        Console.WriteLine("\nTryck enter för att fortsätta");
 
-        var guestId = int.Parse(Console.ReadLine());
-        var editGuest = myContext.Guests.First(x => x.GuestId == guestId);
-        return editGuest;
+        Console.ReadLine();
+        Console.Clear();
+    }
+    private static void ContinueMessage()
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Lyckades !");
+        Console.WriteLine();
+        Console.WriteLine("Tryck enter för att fortsätta");
+        Console.ReadLine();
+        Console.ResetColor();
     }
 }
