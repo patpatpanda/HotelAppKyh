@@ -82,7 +82,7 @@ public class Main
                     }
                     else if (inuput == 11)
                     {
-                        delete.CanselReservation();
+                        delete.CancelReservation();
                     }
                     else if (inuput == 12)
                     {

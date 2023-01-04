@@ -260,7 +260,7 @@ public class Uppdate
                 var read = new Read(myContext);
                 read.ListRoom();
 
-                Console.Write("\nAnge id för rum du vill uppdatera : ");
+                Console.Write("\nAnge (id) för rum du vill uppdatera : ");
                 var roomId = int.Parse(Console.ReadLine());
 
                 var editRoom = myContext.Rooms.First(x => x.RoomId == roomId);
